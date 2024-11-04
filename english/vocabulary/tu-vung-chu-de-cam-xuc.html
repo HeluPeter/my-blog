@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <!-- Fontawesome -->
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="../../styles.css">
+
+  <title>Common Vocabulary: Emotions</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    .icon {
+      margin-left: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .icon.active {
+      transform: scale(1.2);
+      animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-2px);
+      }
+
+      50% {
+        transform: translateX(2px);
+      }
+
+      75% {
+        transform: translateX(-2px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid" id="header">
+
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><img src="../../img/logo.png"></a>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo03">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Something Tips</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Free Topics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">English</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container" id="hero">
+      <div class="row justify-content-end">
+        <div class="col-lg-6 hero-img-container">
+          <div class="hero-img">
+            <!-- hero img -->
+            <img src="../../img/tu-vung-chu-de-be-ngoai.jpg">
+          </div>
+        </div>
+
+        <div class="col-lg-9">
+          <div class="hero-title">
+            <h1>Common Vocabulary <br>About Emotions</h1>
+          </div>
+
+        </div>
+        <!-- hero meta -->
+        <div class="col-lg-6">
+          <div class="hero-meta">
+            <div class="author">
+              <div class="author-img"><img src="../../img/author-img.png"></div>
+              <div class="author-meta">
+                <span class="author-name">Just Peter</span>
+                <span class="author-tag">English</span>
+              </div>
+            </div>
+            <span class="date mt-2">31th Octocber, 2024</span>
+            <div class="tags mt-2">
+              <a href=""><span class="badge badge-pill p-2 badge-light">#TikTok</span></a>
+              <a href="">
+                <span class="badge badge-pill p-2 badge-light">#Shopee</span></a>
+              <a href="">
+                <span class="badge badge-pill p-2 badge-light">#Ecommerce</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Content -->
+  <div class="container mt-5" id="content">
+    <div class="row justify-content-center">
+      <!-- Share buttons -->
+      <div class="col-lg-1 text-left mb-3 fixed" id="social-share">
+        <a class="btn  btn-light m-2" href="https://www.facebook.com/helu.peter/" target="_blank"><i
+            class="fab fa-facebook-f"></i></a>
+        <a class="btn  btn-light m-2" href="#"><i class="fab fa-google"></i></a>
+        <a class="btn  btn-light m-2" href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+
+      <!-- the content -->
+      <div class="col-xl-7 col-lg-10 col-md-12">
+        <p class="lead">Common Vocabulary About Emotions</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Từ vựng</th>
+              <th>Phiên âm</th>
+              <th>Loại từ</th>
+              <th>Nghĩa tiếng Việt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Afraid <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Afraid', this)"></td>
+              <td>/əˈfreɪd/</td>
+              <td>adj</td>
+              <td>lo sợ, sợ hãi</td>
+            </tr>
+            <tr>
+              <td>Angry <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Angry', this)"></td>
+              <td>/ˈæŋgri/</td>
+              <td>adj</td>
+              <td>tức giận, giận dữ</td>
+            </tr>
+            <tr>
+              <td>Bored <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Bored', this)"></td>
+              <td>/bɔrd/</td>
+              <td>adj</td>
+              <td>chán nản</td>
+            </tr>
+            <tr>
+              <td>Confused <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Confused', this)"></td>
+              <td>/kənˈfjuzd/</td>
+              <td>adj</td>
+              <td>bối rối, lúng túng</td>
+            </tr>
+            <tr>
+              <td>Disappointed <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Disappointed', this)"></td>
+              <td>/ˌdɪsəˈpɔɪntɪd/</td>
+              <td>adj</td>
+              <td>thất vọng</td>
+            </tr>
+            <tr>
+              <td>Disgusted <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Disgusted', this)"></td>
+              <td>/dɪsˈgʌstɪd/</td>
+              <td>noun</td>
+              <td>kinh tởm</td>
+            </tr>
+            <tr>
+              <td>Embarrassed <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Embarrassed', this)"></td>
+              <td>/ɪmˈbɛrəst/</td>
+              <td>adj</td>
+              <td>xấu hổ, ngại ngùng</td>
+            </tr>
+            <tr>
+              <td>Excited <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Excited', this)"></td>
+              <td>/ɪkˈsaɪtəd/</td>
+              <td>adj</td>
+              <td>hứng thú, hào hứng</td>
+            </tr>
+            <tr>
+              <td>Fear <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Fear', this)"></td>
+              <td>/fɪr/</td>
+              <td>adj</td>
+              <td>nỗi sợ hãi</td>
+            </tr>
+            <tr>
+              <td>Guilty <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Guilty', this)"></td>
+              <td>/ˈgɪlti/</td>
+              <td>adj</td>
+              <td>cảm thấy tội lỗi</td>
+            </tr>
+            <tr>
+              <td>Happy <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Happy', this)"></td>
+              <td>/ˈhæpi/</td>
+              <td>adj</td>
+              <td>vui vẻ, hạnh phúc</td>
+            </tr>
+            <tr>
+              <td>Hungry <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Hungry', this)"></td>
+              <td>/ˈhʌŋgri/</td>
+              <td>adj</td>
+              <td>đói</td>
+            </tr>
+            <tr>
+              <td>Lonely <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Lonely', this)"></td>
+              <td>/ˈloʊnli/</td>
+              <td>adj</td>
+              <td>cô đơn</td>
+            </tr>
+            <tr>
+              <td>Nervous <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Nervous', this)"></td>
+              <td>/ˈnɜrvəs/</td>
+              <td>adj</td>
+              <td>lo lắng</td>
+            </tr>
+            <tr>
+              <td>Sad <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon" class="icon"
+                  onclick="speak('Sad', this)"></td>
+              <td>/sæd/</td>
+              <td>adj</td>
+              <td>buồn bã</td>
+            </tr>
+            <tr>
+              <td>Sick <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Sick', this)"></td>
+              <td>/sɪk/</td>
+              <td>adj</td>
+              <td>ốm yếu, ốm</td>
+            </tr>
+            <tr>
+              <td>Surprised <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Surprised', this)"></td>
+              <td>/sərˈpraɪzd/</td>
+              <td>adj</td>
+              <td>ngạc nhiên</td>
+            </tr>
+            <tr>
+              <td>Thirsty <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Thirsty', this)"></td>
+              <td>/ˈθɜrsti/</td>
+              <td>adj</td>
+              <td>khát</td>
+            </tr>
+            <tr>
+              <td>Tired <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Tired', this)"></td>
+              <td>/ˈtaɪərd/</td>
+              <td>adj</td>
+              <td>mệt mỏi</td>
+            </tr>
+            <tr>
+              <td>Worried <img src="https://img.icons8.com/material-outlined/24/speaker.png" alt="Speaker icon"
+                  class="icon" onclick="speak('Worried', this)"></td>
+              <td>/ˈwɜrid/</td>
+              <td>adj</td>
+              <td>lo lắng</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="col-lg-10 mt-3">
+        <hr>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Related Article Grid -->
+
+  <div class="container mt-3 mb-5" id="article-grid">
+    <div class="row">
+
+      <div class="col-xl-6 col-lg-12 text-center">
+        <a href="./single.html">
+          <div class="article-card">
+            <div class="article-img">
+              <img src="./img/5.jpeg">
+            </div>
+
+            <div class="article-meta text-left">
+              <h2>To theory equation, more have the or to was the</h2>
+              <p>Herself of that similar live good up which is are to for French endeavours, screen.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-xl-6 col-lg-12 text-center">
+        <a href="./single.html">
+          <div class="article-card">
+            <div class="article-img">
+              <img src="./img/6.jpeg">
+            </div>
+
+            <div class="article-meta text-left">
+              <h2>Morning, it mouth. Harder of </h2>
+              <p>Explain the in fly tone research volunteers and both only the drew cleaning to each language trial.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer section  -->
+
+  <footer class="container-fluid mt-1 p-4">
+    <div class="container ">
+      <div class="row pb-1">
+        <!-- Footer logo -->
+        <div class="col-lg-3 col-md-12"><img src="./img/logo.png"></div>
+
+        <!-- footer links -->
+        <div class="col-lg-6 col-md-12">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Something Tips</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Free Topics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">English</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- footer social links -->
+        <div class="col-lg-3 col-md-12">
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link active btn btn-light" href="https://www.facebook.com/helu.peter/"><i
+                  class="fab fa-facebook-f"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active btn btn-light" href="#"><i class="fab fa-google"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active btn btn-light" href="#"><i class="fab fa-twitter"></i></a>
+            </li>
+          </ul>
+
+        </div>
+
+        <hr>
+      </div>
+      <hr>
+
+      <!-- copyright text -->
+      <div class="row pt-2">
+        <div class="col-lg-12 text-center">
+          <span>&copy <a href="">NewToDesign.com</a> All Rights Received.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Optional JavaScript -->
+  <script>
+    function speak(text,icon) {
+      // Tạo hiệu ứng rung và phóng to
+      icon.classList.add("active");
+
+      // Phát âm từ
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+
+      // Xóa hiệu ứng sau khi kết thúc
+      utterance.onend = () => {
+        icon.classList.remove("active");
+      };
+    }
+  </script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
