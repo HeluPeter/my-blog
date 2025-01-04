@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<!-- Fontawesome -->
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	<title>Peter - Share What I Know</title>
+	<style>
+		.game-card {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			background-color: #f4f4f4;
+			padding-top: 30px;
+		}
+
+		.card {
+			background: #fff;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			text-align: center;
+			margin: 10px;
+			width: 300px;
+		}
+
+		button {
+			padding: 10px 20px;
+			font-size: 16px;
+			border: none;
+			border-radius: 5px;
+			background-color: #c91b1b;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #000000;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container-fluid" id="header">
+
+		<nav class="navbar navbar-expand-md navbar-light">
+			<div class="container">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+					aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<a class="navbar-brand" href="./index.html"><img src="./img/logo.png"></a>
+
+
+				<div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo03">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="#">Something Tips</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Free Topics</a>
+						</li>
+
+						<!-- <li class="nav-item">
+							<a class="nav-link" href="#">Cheap Airfare</a>
+						</li> -->
+
+						<li class="nav-item">
+							<a class="nav-link" href="https://peter-rock-cv.vercel.app/">About</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Hero Section -->
+		<div class="container" id="hero">
+			<div class="row justify-content-end">
+				<div class="col-lg-6 hero-img-container">
+					<div class="hero-img">
+						<!-- hero img -->
+						<img src="./img/tiktok-hieu-can-ban-de-lam-dung.jpg">
+					</div>
+				</div>
+
+				<div class="col-lg-9">
+					<div class="hero-title">
+						<h1>RANDOM QUESTIONS GAME</h1>
+					</div>
+
+				</div>
+				<!-- hero meta -->
+				<div class="col-lg-6">
+					<div class="hero-meta">
+						<div class="author">
+							<div class="author-img"><img src="./img/author-img.png"></div>
+							<div class="author-meta">
+								<span class="author-name">Just Peter</span>
+								<span class="author-tag">Minigame</span>
+							</div>
+						</div>
+						<span class="date mt-2">04th January , 2025</span>
+						<div class="tags mt-2">
+							<a href=""><span class="badge badge-pill p-2 badge-light">#Game</span></a>
+							<a href="">
+								<span class="badge badge-pill p-2 badge-light">#Design</span></a>
+							<a href="">
+								<span class="badge badge-pill p-2 badge-light">#Share</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Content -->
+	<div class="container mt-5" id="content">
+		<div class="row justify-content-center">
+			<!-- Share buttons -->
+			<div class="col-lg-1 text-left mb-3 fixed" id="social-share">
+				<a class="btn  btn-light m-2" href="https://www.facebook.com/helu.peter/" target="_blank"><i
+						class="fab fa-facebook-f"></i></a>
+				<a class="btn  btn-light m-2" href="#"><i class="fab fa-google"></i></a>
+				<a class="btn  btn-light m-2" href="#"><i class="fab fa-twitter"></i></a>
+			</div>
+
+			<!-- the content -->
+			<div class="col-xl-7 col-lg-10 col-md-12">
+				<p class="lead">Tớ có tạo ra một trò chơi nho nhỏ bằng cách sử dụng 100 câu hỏi nói về sự thật của bản thân bạn
+					trong cuốn sách "Đường về mình" của tác giả Bloom.</p>
+
+				<p>Để khi nào chúng ta tụ họp đông zui có thể chơi trò này để bớt zui đê :v
+				</p>
+			</div>
+
+			<div class="col-lg-10 mt-3">
+			</div>
+		</div>
+	</div>
+	<div class="game-card">
+		<button id="randomButton">Random Question</button>
+		<div class="card" id="questionCard">
+			<h2>Nhấn nút đê và bạn sẽ nhận được câu hỏi bất kì ~</h2>
+		</div>
+	</div>
+
+
+	<script>
+		const questions = [
+			"Cậu muốn mọi người biết sự thật nào về mình?",
+			"Nếu có một điều ở bản thân mà cậu không bao giờ muốn thay đổi hay mất đi thì đó là gì? Vì sao?",
+			"Nếu không có tên, tuổi, giới tính, nền tảng, công việc, chức danh, chức vị, mối quan hệ, văn hóa, môi trường, đam mê, sở thích, tài sản, kinh nghiệm, tương lai, quá khứ - những thứ của cậu… thì cậu là ai? Hãy kiên nhẫn trả lời cho tới khi bản thân cậu tự cảm thấy mình không thể cung cấp thêm đáp án được nữa.",
+			"Cậu có thích chính mình không? Vì sao?",
+			"Những đặc điểm/tính cách nào ở bản thân mà cậu cảm thấy tự tin và tự hào?",
+			"Những đặc điểm/ tính cách nào ở bản thân khiến cậu tự ti, hoặc cậu không thích và muốn thay đổi? Vì sao cậu nghĩ nó không tốt? Cậu có thể tìm thấy mặt tích cực của nó không? Cậu làm gì để thay đổi nó?",
+			"Cậu thấy giá trị cậu mang đến cho thế giới này là gì? Cậu có đang sống đúng với nó không?",
+			"Điều gì đang làm cho cậu cảm thấy mình đang thực sự sống?",
+			"Cậu nghĩ vai trò của cậu đối với bản thân là gì? Cậu thường có những hành động góp phần xây dựng và nâng cao sự kết nối với bản thân không?",
+			"Cậu có thích những việc mà cậu đang làm không? Vì sao cậu lại chọn chúng? Cậu đang làm những việc đó vì cậu muốn hay vì cậu nghĩ rằng cậu (nên) muốn?",
+			"Cậu có thích người mà mình đang trở thành không?",
+			"Bài học hay sự phát hiện nào trên hành trình trưởng thành có ý nghĩa nhất đối với cậu?",
+			"Cậu có thấy mình khác dần đi không? Nếu so với 3 năm trước thì cậu thấy mình khác ở chỗ nào? Theo hướng tích cực hay tiêu cực? Điều gì đã tạo ra sự thay đổi đó?",
+			"Cậu muốn nói gì với mình của quá khứ và của tương lai?",
+			"Đây là bức tranh có tên 'Thế giới bên trong tôi', hãy thử hình dung và vẽ nó.",
+			"Cậu có cảm thấy thoải mái để bộc lộ con người chân thật của mình không? Nếu không thì điều gì khiến cậu cảm thấy cậu không thể sống là chính mình?",
+			"Khi nào cậu cảm thấy cậu thực sự là chính mình nhất? Đã bao giờ cậu cảm thấy bị chối bỏ khi thể hiện sự chân thật ấy? Điều đó đã gây ảnh hưởng đến cậu như thế nào?",
+			"Một điều mà cậu đã từng tin, nhưng giờ lại nhận ra nó không còn đúng, ít nhất là với bản thân mình? Nó đã có tác động đến những suy nghĩ, cảm xúc, hành động và quyết định của cậu như thế nào? Điều gì có thể xảy ra nếu hiện tại cậu vẫn tin vào nó?",
+			"Suy nghĩ nào thường xuất hiện trong đầu cậu nhiều nhất? Từ đâu mà cậu có những suy nghĩ đó?",
+			"Nỗi sợ sâu thẳm của cậu là gì? Vì sao cậu lại có nỗi sợ đó? Cậu có thể ngồi với nó, trò chuyện, thấu hiểu và giải phóng nó không?",
+			"Cậu đang đặt quá nhiều áp lực lên bản thân không? Áp lực ấy có xuất phát từ nỗi sợ hay nỗi lo âu liên quan đến những sự kiện cậu đã trải qua trong quá khứ không? Cậu tưởng tượng mình sẽ như thế nào nếu hạ bớt xuống những áp lực đó?",
+			"Cậu có thường so sánh, cảm thấy ghen tị và đố kị với người khác không? Vì điều gì? Trong hoàn cảnh nào? Cậu nghĩ vì sao mình lại có xu hướng như vậy?",
+			"Những cái 'nên' để đáp ứng bên ngoài đang ảnh hưởng đến lựa chọn của cậu như thế nào, so với những nhu cầu và mong muốn thực sự của bản thân?",
+			"Cậu muốn mình thôi lo lắng về điều gì? Vì sao cậu thấy mình vẫn còn sự lo lắng ấy?",
+			"Những lời chỉ trích cậu thường dành cho bản thân là gì? Cậu có cảm giác ra sao khi nghĩ hoặc nói ra những lời đó? Cậu thấy nhẹ lòng hơn hay đau khổ hơn? Vì sao cậu lại tin vào chúng?",
+			"Cậu có cảm thấy cậu cần tha thứ cho bản thân không? Và vì điều gì?",
+			"Cậu có cảm thấy cậu đang nhận được tình yêu thương vô điều kiện từ người khác không? Lý do nào khiến cậu cảm thấy cậu không xứng đáng để nhận được tình yêu thương vô điều kiện?",
+			"Điều gì thường tác động xấu đến năng lượng của cậu? Cậu loại bỏ hay bảo vệ bản thân khỏi nó như thế nào?",
+			"Cậu có khả năng tự bảo vệ và lên tiếng cho mình không? Điều đó đã được thể hiện ở những trường hợp nào?",
+			"Có những vấn đề cá nhân hay chủ đề đối thoại nào mà cậu thường né tránh không? Vì sao?",
+			"Có sự thay đổi nào vốn cần được diễn ra nhưng cậu lại đang kháng cự không?",
+			"Những sự lựa chọn của cậu đang được thúc đẩy bởi tình yêu hay nỗi sợ? Cụ thể chúng là gì?",
+			"Sự tĩnh lặng có khiến cậu cảm thấy không thoải mái không? Vì sao?",
+			"Có điều gì cậu cảm thấy cần dành thêm thời gian để làm việc lại với bản thân không?",
+			"Cậu có đang tự do không? “Cái giá” cậu sẵn sàng trả cho sự tự do ấy là gì?",
+			"Khám phá lớn nhất hay quan trọng nhất mà cậu có về bản thân là gì?",
+			"Mục đích sâu sắc của cậu trong cuộc đời là gì? Cậu có thể đến nơi mà cậu có thể kết nối với mục đích đó chưa?",
+			"Cậu tin vào điều gì?",
+			"Cậu tiếp cận cuộc sống của bản thân như thế nào? Có phải mọi hành động của cậu đều bắt nguồn từ bên trong?",
+			"Cậu có tin tưởng vào tiếng nói bên trong mình không? Cậu có dễ bị chi phối bởi ý kiến của người khác không? Kết quả cho những quyết định cậu đưa ra dưới sự tác động của họ sau cùng có được như mong đợi?",
+			"Cậu có nghĩ cậu đã thực sự hiểu bản thân không? Nếu khoảng cách từ cậu đến sự thấu hiểu chính mình là 100 bước chân thì cậu thấy mình đang ở vị trí bước chân nào? Vì sao?",
+			"Cậu có tin vào trực giác và tiếng nói bên trong không? Niềm tin ấy tác động ra sao đến cách cậu sống? Tiếng gọi bên trong cậu lúc này là gì?",
+			"Cậu đã bỏ thứ gì để có những thứ cậu đang có? Cậu có cảm thấy tiếc nuối hay hối hận không?",
+			"Cậu có nghĩ cậu sẽ mất đi danh tính của mình khi mất đi những thứ cậu đang có không?",
+			"Nếu nhìn nhận một cách khách quan, cậu có nghĩ rằng mình đang ở đúng nơi mà mình cần ở không? Vì sao?",
+			"Cậu có cảm thấy mình đang phải thỏa hiệp với điều gì không? Cậu nghĩ cậu có thể kéo dài sự thỏa hiệp đó đến khi nào? Lý do nào khiến cậu phải chấp nhận như vậy? Cậu sẽ phải từ bỏ điều gì nếu chấm dứt nó? Cậu có thể chọn bản thân mình không? Nếu không, cậu nghĩ mình sẽ như thế nào?",
+			"Nếu bây giờ cậu chọn bản thân, cậu sẽ làm gì?",
+			"Hãy kể lại một ký ức mà cậu không thể nào quên. Vì sao nó lưu lại với cậu lâu đến vậy?",
+			"Có điều gì đối với cậu rất quan trọng hay rất có ý nghĩa, nhưng người khác dường như sẽ không hiểu?",
+			"Tâm sự cậu đã luôn giữ trong lòng mà không thể nói ra?",
+			"Cậu có đang thực sự ổn không? Điều gì đang khiến cậu phân vân để đưa ra câu trả lời?",
+			"Cậu có xu hướng né tránh những cảm xúc nào? Vì sao cậu lại sợ phải đối diện với những cảm xúc đó? Cậu nghĩ điều gì sẽ xảy ra nếu cậu cho phép mình trải nghiệm chúng?",
+			"Trong quá trình lớn lên, cậu đã xử lý cảm xúc tiêu cực của mình ra sao? Và hiện tại cậu thấy cách đó lành mạnh và có ích hay không? Nếu không thì từ nay cậu thấy mình nên làm gì trong những tình huống tương tự?",
+			"Cậu đánh giá mối quan hệ giữa cậu và chính mình như thế nào? Cậu có đang làm gì để cải thiện nó không?",
+			"Cậu đã lớn lên trong môi trường như thế nào? Nó tác động ra sao đến quá trình trưởng thành của cậu, cũng như đã định hình cậu là con người của bây giờ như thế nào?",
+			"Điều gì sẽ khiến cậu cảm thấy mình được yêu thương trong một mối quan hệ?",
+			"Cậu có thoải mái là chính mình trong những mối quan hệ mà cậu đang có không?",
+			"Cậu có những ranh giới nào đối với các mối quan hệ? Và cậu đã gặp khó khăn gì khi thiết lập chúng? Và cậu đã vượt qua như thế nào?",
+			"Mối quan hệ giữa cậu và bố mẹ như thế nào? Cậu có muốn thay đổi điều gì về nó không? Ở vị trí của mình, cậu nghĩ cậu có thể làm gì để thay đổi nó?",
+			"Cậu có sở hữu tính cách nào giống với bố mẹ mình không? Cậu nhìn nhận nó như thế nào?",
+			"Niềm tin, giá trị và lối sống mà bố mẹ cậu đề cao là gì? Cậu có nghĩ rằng mình cũng thừa hưởng những quan điểm tương tự không? Hay nếu khác thì cụ thể cậu khác họ ở điểm nào? Có khi nào cậu thấy mình mắc kẹt trong những khuôn mẫu được tái diễn trong gia đình không?",
+			"Cậu có đã từng hoặc đang níu giữ điều gì mà lẽ ra cậu nên buông bỏ (sớm hơn) không? Vì sao cậu lại gắn chặt với nó đến vậy?",
+			"Cậu có cảm thấy được quan tâm, thấu hiểu và khích lệ từ gia đình và bạn bè không? Người nào có? Người nào không? Mối quan hệ giữa cậu và họ như thế nào?",
+			"Cậu có đang mang trong mình những vết thương chưa được chữa lành không? Liệu đã bao giờ cậu thử đối diện với chúng? Nếu chưa thì điều gì đang ngăn cản cậu làm vậy? Và trong trường hợp đó, cậu nghĩ điều gì sẽ có thể giúp mình giải quyết được? Nó có hoàn toàn nằm trong hay nằm ngoài sự kiểm soát của cậu không?",
+			"Hãy kể về một lần cậu bị tổn thương. Cậu có cảm xúc và phản ứng như thế nào trong tình huống đó? Cậu nhận thấy những cảm xúc và hành vi xảy ra lúc đó xuất phát từ đâu? Cậu có được bài học gì cho mình? Tổn thương ấy sẽ ảnh hưởng đến cậu ra sao nếu không được chữa lành?",
+			"Có ai đó mà cậu vẫn đang cố gắng nhưng chưa thể hoàn toàn tha thứ cho họ không? Vì sao?",
+			"Có cuộc nói chuyện nào dẫu biết cần thiết nhưng bấy lâu cậu vẫn đang né tránh không?",
+			"Có tình huống nào đang liên tục lặp lại trong cuộc sống của mình mà cậu muốn nó dừng lại không? Cậu có nghĩ mình là người có thể chủ động làm điều đó?",
+			"Đã bao giờ cậu trải qua một sự kiện khiến cậu thay đổi hoàn toàn suy nghĩ của mình trước đó chưa? Cậu nghĩ đó là việc nên hay không nên xảy ra?",
+			"Một điều ai đó đã từng nói với cậu mà đến bây giờ cậu vẫn ghi nhớ và có thể sẽ không bao giờ quên?",
+			"Liệu có bao giờ cậu cảm thấy thế giới thật sự quá khắc nghiệt với mình không? Đó là khi nào?",
+			"Cuối cùng thì cậu cũng đã chấp nhận điều gì?",
+			"Câu hỏi 'Tại sao' lớn nhất đối với cậu là gì?",
+			"Điều gì làm cho trái tim cậu rạo rực?",
+			"Cậu trân trọng điều gì nhất trong cuộc sống của mình? Cậu đang làm gì để nuôi dưỡng nó?",
+			"Ba thứ cậu cảm thấy biết ơn lúc này?",
+			"Cho tới thời điểm này, đâu là khoảng thời gian hạnh phúc nhất của cậu? Cậu thấy hình ảnh của mình ở đó như thế nào?",
+			"Hạnh phúc với cậu là gì? Cậu có đang giúp mình hạnh phúc hơn không?",
+			"Những hành động tử tế mà cậu thường dành cho bản thân, đặc biệt trong những giai đoạn khó khăn là gì?",
+			"Thứ gì mang đến năng lượng cho cậu? Và thứ gì dễ rút cạn nó?",
+			"Tình yêu thương bản thân của cậu được thể hiện ở những khía cạnh nào? Và cậu nghĩ như vậy đã đủ chưa?",
+			"Điều gì trong cuộc sống của mình đang khiến cậu bận tâm, nhưng lại nằm ngoài tầm kiểm soát của cậu? Cậu đã và đang làm gì với sự bận tâm đó?",
+			"Tình huống nào đang tác động tiêu cực đến cậu? Cậu có đang chấp nhận tiếp tục ở trong đó không? Vì sao?",
+			"Có lời hứa vào với chính mình mà cậu đang chưa thực hiện hay đang đi ngược lại không?",
+			"Có điều gì cậu muốn làm nhiều hơn cho bản thân không?",
+			"Những câu chữ cậu muốn được nghe ngay lúc này?",
+			"Cậu có đang cảm thấy cô đơn không? Điều gì khiến cậu cảm thấy như vậy? Khi cô đơn, cậu làm gì?",
+			"Lần gần đây nhất có ai đó chăm chú lắng nghe cậu nói là khi nào? Đã bao giờ cậu chăm chú lắng nghe chính mình nói chưa?",
+			"Đã bao lâu rồi cậu không dành thời gian ở một mình, cho bản thân mình? Cậu có cảm thấy trọn vẹn và đủ đầy trong lúc đó không?",
+			"Lần gần đây nhất cậu khóc là khi nào? Cậu cảm thấy ra sao sau những giọt nước mắt đó?",
+			"Lần gần đây nhất cậu cười một cách vô tư là khi nào? Nếu có một thứ có thể làm cậu cười như vậy ngay bây giờ, nó sẽ là gì?",
+			"Cuốn sách hay bộ phim nào có ảnh hưởng đáng kể nhất đến cậu? Cụ thể ở khía cạnh nào?",
+			"Một trải nghiệm sống có ý nghĩa đối với cậu là gì?",
+			"Cậu nghĩ gì về sự có mặt của mình trên trái đất?",
+			"Khi cậu rời khỏi thế gian này, cậu muốn mọi người nhớ gì về mình?",
+			"Nếu có cơ hội, cậu muốn được tái sinh thành gì? Nó khác với con người hiện tại của cậu ở điểm nào?",
+			"Ước mơ lớn nhất của cậu là gì? Cậu đang trải nghiệm nó hay đã cất giấu đi?",
+			"Lời nói dối lớn nhất cậu nói với thế giới ngoài kia là gì?",
+			"Cậu nghĩ sự thật của màu đỏ là gì? Cậu sẽ mô tả nó với một người mù như thế nào?",
+			"Nếu cả thế giới này có thể nghe thấy cậu, nhưng chỉ là một câu duy nhất thì cậu sẽ nói gì? Đó có phải là lời mà cậu cũng muốn nói với chính mình không?"
+		];
+
+		document.getElementById('randomButton').addEventListener('click',function () {
+			const randomIndex = Math.floor(Math.random() * questions.length);
+			document.getElementById('questionCard').innerHTML = `<h2>${questions[randomIndex]}</h2>`;
+		});
+	</script>
+	<!-- Footer section  -->
+
+	<footer class="container-fluid mt-1 p-4">
+		<div class="container ">
+			<div class="row pb-1">
+				<!-- Footer logo -->
+				<div class="col-lg-3 col-md-12"><img src="./img/logo.png"></div>
+
+				<!-- footer links -->
+				<div class="col-lg-6 col-md-12">
+					<ul class="nav justify-content-center">
+						<li class="nav-item">
+							<a class="nav-link active" href="#">Something Tips</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Free Topics</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://peter-rock-cv.vercel.app/">About</a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- footer social links -->
+				<div class="col-lg-3 col-md-12">
+					<ul class="nav justify-content-end">
+						<li class="nav-item">
+							<a class="nav-link active btn btn-light" href="https://www.facebook.com/helu.peter/"><i
+									class="fab fa-facebook-f"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active btn btn-light" href="#"><i class="fab fa-instagram"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active btn btn-light" href="https://www.linkedin.com/in/peter-nguyen-a71783231/"><i
+									class="fab fa-linkedin"></i></a>
+						</li>
+					</ul>
+
+				</div>
+
+				<hr>
+			</div>
+			<hr>
+
+			<!-- copyright text -->
+			<div class="row pt-2">
+				<div class="col-lg-12 text-center">
+					<span>&copy <a href="">Peter Rock</a> All Rights Reserved.</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

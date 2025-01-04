@@ -19,6 +19,43 @@
 	<link rel="stylesheet" type="text/css" href="./styles.css">
 
 	<title>Peter - Share What I Know</title>
+
+	<style>
+		.article-card {
+			display: inline-block;
+		}
+
+		.search-container {
+			margin-bottom: 20px;
+			margin-top: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#searchInput {
+			padding: 10px;
+			width: 300px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		}
+
+		#searchButton {
+			padding: 10px 15px;
+			background-color: #18191c;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-left: 10px;
+			transition: background-color 0.3s;
+		}
+
+		#searchButton:hover {
+			background-color: #ca1313;
+		}
+	</style>
 </head>
 
 <body>
@@ -34,7 +71,6 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<a class="navbar-brand" href="#"><img src="./img/logo.png"></a>
-
 
 				<div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo03">
 
@@ -71,9 +107,7 @@
 
 				<div class="col-lg-9">
 					<div class="hero-title">
-						<a href="./single.html">
-							<h1>You will get better maybe <br>not today but someday</h1>
-						</a>
+						<h1>You will get better maybe <br>not today but someday</h1>
 					</div>
 
 				</div>
@@ -96,6 +130,10 @@
 	<!-- hero ends -->
 
 	<!-- Article Grid -->
+	<div class="search-container">
+		<input type="text" id="searchInput" placeholder="Search something...">
+		<button id="searchButton" onclick="searchArticles()">Search</button>
+	</div>
 
 	<div class="container mt-2 mb-2 pt-5 pb-5" id="article-grid">
 		<div class="row justify-content-center">
@@ -112,6 +150,37 @@
 							<p>Mình thấy có rất nhiều chia sẻ về tip trick được truyền miệng để 1 video TikTok có nhiều lượt xem. Tuy
 								nhiên, nghe từ nhiều phía, mỗi thứ thử 1 chút; có lúc hiệu nghiệm có lúc không (VD: gắn nhiều # thì dễ
 								lên xu hướng / bóp tương tác,...).
+							</p>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-xl-6 col-lg-12 text-center">
+				<a href="./share-fonts.html">
+					<div class="article-card">
+						<div class="article-img">
+							<img src="./img/tiktok-hieu-can-ban-de-lam-dung.jpg">
+						</div>
+
+						<div class="article-meta text-left">
+							<h2>CHIA SẺ 1001 FONTS CHỮ VIỆT HÓA</h2>
+							<p>Mình chia sẻ các fonts Việt hóa mà mình tổng hợp và lụm nhặt được ở đâu đó trên mạng nhé ^^
+							</p>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-xl-6 col-lg-12 text-center">
+				<a href="./random-question.html">
+					<div class="article-card">
+						<div class="article-img">
+							<img src="./img/tiktok-hieu-can-ban-de-lam-dung.jpg">
+						</div>
+
+						<div class="article-meta text-left">
+							<h2>RANDOM QUESTIONS GAME</h2>
+							<p>Chơi đê, bạn sẽ khóc hết nước mắt cho mà xem :)))
 							</p>
 						</div>
 					</div>
@@ -137,7 +206,7 @@
 				<a href="./english/vocabulary/tu-vung-chu-de-be-ngoai.html">
 					<div class="article-card">
 						<div class="article-img">
-							<img src="./img/tu-vung-chu-de-co-the.jpg">
+							<img src="./img/tu-vung-chu-de-be-ngoai.jpg">
 						</div>
 
 						<div class="article-meta  text-left">
@@ -262,6 +331,23 @@
 
 
 	<!-- Optional JavaScript -->
+	<script>
+		function searchArticles() {
+			const input = document.getElementById('searchInput').value.toLowerCase();
+			const articles = document.querySelectorAll('.article-card');
+
+			articles.forEach(article => {
+				const title = article.querySelector('h2').textContent.toLowerCase();
+				const description = article.querySelector('p').textContent.toLowerCase();
+				if (title.includes(input) || description.includes(input)) {
+					article.style.display = 'inline-block';
+				} else {
+					article.style.display = 'none';
+				}
+			});
+		}
+	</script>
+
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
