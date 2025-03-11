@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<!-- Fontawesome -->
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	<title>Giáo Lý Mùa Chay - Năm Thánh 2025</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 20px;
+			background-color: #f4f4f4;
+			position: relative;
+			overflow: hidden;
+		}
+
+		h2 {
+			text-align: center;
+			color: #333;
+		}
+
+		.container {
+			max-width: 1000px;
+			margin: auto;
+			background: white;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.question {
+			font-weight: bold;
+			margin-bottom: 15px;
+			font-size: 15px;
+		}
+
+		.input-box {
+			border: 1px solid #ccc;
+			padding: 10px;
+			width: 100%;
+			min-height: 40px;
+			margin: 0 auto 15px;
+			border-radius: 5px;
+			font-size: 16px;
+			resize: vertical;
+			overflow: auto;
+			white-space: pre-wrap;
+			transition: border-color 0.3s, transform 0.3s;
+		}
+
+		.correct {
+			border-color: green;
+			animation: bounce 0.5s;
+		}
+
+		.incorrect {
+			border-color: red;
+		}
+
+		#result {
+			margin-top: 20px;
+			text-align: center;
+			font-size: 15px;
+		}
+
+		#correctAnswers {
+			margin-top: 10px;
+			font-weight: bold;
+			display: none;
+			text-align: center;
+			font-size: 15px;
+		}
+
+		#tips {
+			display: none;
+			margin-top: 10px;
+			font-style: italic;
+			color: #555;
+			text-align: center;
+		}
+
+		#buttons {
+			/* display: flex; */
+			justify-content: space-between;
+			margin-top: 20px;
+		}
+
+		button {
+			background-color: #007bff;
+			color: white;
+			border: none;
+			padding: 10px 15px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			transition: background-color 0.3s;
+		}
+
+		button:hover {
+			background-color: #0056b3;
+		}
+
+		@media (max-width: 600px) {
+			.input-box {
+				max-width: 100%;
+			}
+
+			#buttons {
+				flex-direction: column;
+			}
+
+			#buttons button {
+				width: 100%;
+				margin-bottom: 10px;
+			}
+		}
+
+		@keyframes bounce {
+
+			0%,
+			20%,
+			50%,
+			80%,
+			100% {
+				transform: translateY(0);
+			}
+
+			40% {
+				transform: translateY(-10px);
+			}
+
+			60% {
+				transform: translateY(-5px);
+			}
+		}
+
+		.title {
+			font-size: 36px;
+			font-weight: bold;
+			text-align: center;
+			color: #2C3E50;
+			text-transform: uppercase;
+			margin: 20px 0;
+			padding: 10px;
+			background-color: #ECF0F1;
+			border-radius: 8px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.subtitle {
+			font-size: 24px;
+			font-style: italic;
+			text-align: center;
+			color: #34495E;
+			margin: 10px 0;
+		}
+
+		#questionNumberInput {
+			max-width: 180px;
+			padding: 10px;
+			font-size: 16px;
+			border: 2px solid #3498db;
+			border-radius: 5px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			transition: border-color 0.3s;
+			margin-bottom: 20px;
+		}
+
+		#questionNumberInput:focus {
+			border-color: #2980b9;
+			outline: none;
+		}
+
+		button {
+			padding: 10px 15px;
+			font-size: 16px;
+			color: white;
+			background-color: #3498db;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		button:hover {
+			background-color: #2980b9;
+		}
+
+		@media (max-width: 600px) {
+			.input-container {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			#questionNumberInput {
+				flex: 1;
+				margin-right: 10px;
+				margin-bottom: 0px;
+			}
+
+			button {
+				width: auto;
+			}
+
+			#randomButton {
+				margin-top: 10px;
+				width: 100%;
+				margin-bottom: 20px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<h1 class="title">CHƯƠNG TRÌNH HỌC HỎI GIÁO LÝ NĂM THÁNH 2025</h1>
+		<h2 class="subtitle">NĂM CANH TÂN ĐỜI SỐNG ĐỨC TIN TRONG CỬ HÀNH PHỤNG VỤ</h2>
+		<input type="number" id="questionNumberInput" placeholder="Nhập số câu hỏi" />
+		<button id="searchButton">Tìm Câu Hỏi</button>
+		<button id="randomButton">Câu Hỏi Ngẫu Nhiên</button>
+		<div id="questionsContainer"></div>
+		<div id="tips"></div>
+		<div id="buttons">
+			<button id="checkButton">Kiểm Tra</button>
+			<button id="tipsButton" style="background-color: #f7c638;">Tips</button>
+			<button id="prevButton" style="display: none; background-color: #6bb151;">Previous</button>
+			<button id="nextButton" style="display: none; background-color: #6bb151;">Next</button>
+			<button id="showAnswerButton" style="display: none; background-color: #de4444;">Xem Đáp Án</button>
+		</div>
+		<div id="result"></div>
+		<div id="correctAnswers"></div>
+	</div>
+
+	<audio id="correctSound" src="correct_sound.m4a"></audio>
+	<audio id="incorrectSound" src="incorrect_sound.m4a"></audio>
+
+	<script>
+		const questions = [
+			{
+				question: "1. H. Phụng vụ là gì?",
+				tips: "Thưa. Phụng vụ ______ ______ nhiệm ______. [206]",
+				correctAnswers: "Thưa. Phụng vụ là việc Hội Thánh chính thức cử hành mầu nhiệm Đức Kitô, để thờ phượng Thiên Chúa và thánh hóa con người. [206]"
+			},
+			{
+				question: "2. H. Phụng vụ có vị trí nào trong Hội Thánh?",
+				tips: "Thưa. Phụng vụ là ______ và ______ mạch ______. [207]",
+				correctAnswers: "Thưa. Phụng vụ là chóp đỉnh và là nguồn mạch các hoạt động của Hội Thánh, qua đó Đức Kitô tiếp tục công trình cứu độ của Ngài. [207]"
+			},
+			{
+				question: "3. H. Đức Kitô tiếp tục công trình cứu độ của Ngài trong Hội Thánh thế nào?",
+				tips: "Thưa. Đức Kitô ______ ______ cứu độ ______ qua ______. [208]",
+				correctAnswers: "Thưa. Đức Kitô tiếp tục công trình cứu độ của Ngài trong Hội Thánh qua các bí tích được gọi là nhiệm cục bí tích. [208]"
+			},
+			{
+				question: "4. H. Nhiệm cục bí tích là gì?",
+				tips: "Thưa. Nhiệm cục bí tích là ______ ______ ơn ______ qua ______. [209]",
+				correctAnswers: "Thưa. Nhiệm cục bí tích là sự chuyển thông ơn cứu độ của Chúa qua việc Hội Thánh cử hành các bí tích, nhất là bí tích Thánh Thể. [209]"
+			},
+			{
+				question: "5. H. Ai hành động trong phụng vụ?",
+				tips: "Thưa. Chính ______ ______, nghĩa là ______ với ______ của Ngài là ______ hành động trong phụng vụ. [224]",
+				correctAnswers: "Thưa. Chính “Đức Kitô toàn thể”, nghĩa là Đức Kitô cùng với Thân Thể của Ngài là Hội Thánh trên trời và Hội Thánh ở trần gian hành động trong phụng vụ. [224]"
+			},
+			{
+				question: "6. H. Cử hành phụng vụ gồm những yếu tố nào?",
+				tips: "Thưa. Cử hành phụng vụ gồm ______ yếu tố này: ______ và ______. [227]",
+				correctAnswers: "Thưa. Cử hành phụng vụ gồm hai yếu tố này: - Một là các dấu chỉ và biểu tượng, để diễn tả và thực hiện hành động cứu độ của Đức Kitô; - Hai là lời nói và hành động, nhờ đó con người gặp gỡ và đối thoại với Thiên Chúa. [227]"
+			},
+			{
+				question: "7. H. Ngày Chúa Nhật quan trọng thế nào trong Năm phụng vụ?",
+				tips: "Thưa. Ngày Chúa Nhật ______ ______ vì là “Ngày của Chúa”, ______ ______ của cả Năm Phụng vụ. [230]",
+				correctAnswers: "Thưa. Ngày Chúa Nhật rất quan trọng vì là “Ngày của Chúa”, ngày Chúa Phục Sinh. Vì thế, ngày Chúa Nhật là nền tảng và trung tâm của cả Năm Phụng vụ. [230]"
+			},
+			{
+				question: "8. H. Năm phụng vụ là gì?",
+				tips: "Thưa. Năm Phụng vụ là ______ ______ Hội Thánh ______ các mầu nhiệm Đức Kitô. [231]",
+				correctAnswers: "Thưa. Năm Phụng vụ là thời gian Hội Thánh cử hành các mầu nhiệm Đức Kitô, để giúp chúng ta sống những mầu nhiệm ấy, hầu chuẩn bị đón Ngài lại đến trong vinh quang. [231]"
+			},
+			{
+				question: "9. H. Phụng vụ Các Giờ Kinh là gì?",
+				tips: "Thưa. Phụng vụ Các Giờ Kinh là ______ ______ của Đức Kitô cùng với Hội Thánh. [233]",
+				correctAnswers: "Thưa. Phụng vụ Các Giờ Kinh là lời cầu nguyện của Đức Kitô cùng với Hội Thánh, để giúp các tín hữu thánh hóa thời gian trong ngày. [233]"
+			},
+			{
+				question: "10. H. Bí tích là gì?",
+				tips: "Thưa. Bí tích là ______ ______ bên ngoài Chúa Giê su đã lập. [215]",
+				correctAnswers: "Thưa. Bí tích là dấu chỉ bên ngoài Chúa Giê su đã lập và truyền lại cho Hội Thánh cử hành, để diễn tả và thông ban cho chúng ta ân sủng bên trong là sự sống thần linh. [215]"
+			},
+			{
+				question: "11. H. Có mấy bí tích?",
+				tips: "Thưa. Có 7 bí tích: ______, ______, ______, ______, ______, ______, ______. [216]",
+				correctAnswers: "Thưa. Có 7 bí tích: - Một là Bí tích Rửa Tội; - Hai là Bí tích Thêm Sức; - Ba là Bí tích Thánh Thể; - Bốn là Bí tích Thống Hối; - Năm là Bí tích Xức Dầu Bệnh Nhân; - Sáu là Bí tích Truyền Chức Thánh; - Bảy là Bí tích Hôn Phối. [216]"
+			},
+			{
+				question: "12. H. Các bí tích của Hội Thánh được phân loại thế nào?",
+				tips: "Thưa. Các bí tích của Hội Thánh được phân ______ ba loại: ______, ______, ______. [239]",
+				correctAnswers: "Thưa. Các bí tích của Hội Thánh được phân thành ba loại này: - Một là các bí tích khai tâm Kitô giáo; - Hai là các bí tích chữa lành; - Ba là các bí tích phục vụ. [239]"
+			},
+			{
+				question: "13. H. Các bí tích khai tâm Kitô Giáo gồm những bí tích nào?",
+				tips: "Thưa. Các bí tích khai tâm Kitô giáo gồm ______, ______, ______. [240]",
+				correctAnswers: "Thưa. Các bí tích khai tâm Kitô giáo gồm Bí tích Rửa Tội, Thêm Sức và Thánh Thể. Các bí tích này tái sinh, củng cố và nuôi dưỡng các tín hữu trong đời sống mới. [240]"
+			},
+			{
+				question: "14. H. Các bí tích chữa lành gồm những bí tích nào?",
+				tips: "Thưa. Các bí tích chữa lành gồm ______ và ______. [241]",
+				correctAnswers: "Thưa. Các bí tích chữa lành gồm Bí tích Thống Hối và Xức Dầu Bệnh Nhân. Các bí tích này phục hồi và củng cố đời sống mới của các tín hữu đã bị suy yếu hoặc mất đi do tội lỗi. [241]"
+			},
+			{
+				question: "15. H. Các bí tích phục vụ gồm những bí tích nào?",
+				tips: "Thưa. Các bí tích phục vụ gồm ______ và ______. [242]",
+				correctAnswers: "Thưa. Các bí tích phục vụ gồm Bí tích Truyền Chức Thánh và Hôn Phối. Hai bí tích này đem lại ân sủng riêng cho mỗi sứ vụ đặc biệt trong Hội Thánh, để xây dựng Dân Thiên Chúa. [242]"
+			},
+			{
+				question: "16. H. Ấn tín bí tích là gì?",
+				tips: "Thưa. Ấn tín bí tích là ______ ______ thiêng liêng, ______ vào lòng những người lãnh ______. [219]",
+				correctAnswers: "Thưa. Ấn tín bí tích là dấu ấn thiêng liêng, Thiên Chúa in vào lòng những người lãnh Bí tích Rửa Tội, Thêm Sức, Truyền Chức Thánh, như lời hứa và bảo đảm cho sự che chở của Ngài. Vì ấn tín không thể xóa được, nên các bí tích này chỉ được lãnh một lần mà thôi. [219]"
+			},
+			{
+				question: "17. H. Vì sao gọi là bí tích đức tin?",
+				tips: "Thưa. Vì khi lãnh nhận bí tích, chúng ta phải có ______, đồng thời ______ ______, đức tin của chúng ta thêm ______. [220]",
+				correctAnswers: "Thưa. Vì khi lãnh nhận bí tích, chúng ta phải có đức tin, đồng thời nhờ các bí tích, đức tin của chúng ta thêm mạnh mẽ vững vàng. [220]"
+			},
+			{
+				question: "18. H. Ai ban ân sủng trong các bí tích?",
+				tips: "Thưa. Chính Đức Kitô ______ và ______ ân sủng trong các bí tích, nhưng ______ ______ này có mang lại lợi ích hay không thì ______. [221]",
+				correctAnswers: "Thưa. Chính Đức Kitô hoạt động và thông ban ân sủng trong các bí tích, nhưng ân sủng này có mang lại lợi ích hay không thì còn tùy thuộc vào sự chuẩn bị nội tâm của người lãnh nhận. [221]"
+			},
+			{
+				question: "19. H. Vì sao các bí tích cần thiết cho ơn cứu độ?",
+				tips: "Thưa. Vì các bí tích ______ ______ ân sủng của Chúa Thánh Thần, để Ngài ______ và ______ chúng ta. [222]",
+				correctAnswers: "Thưa. Vì các bí tích trao ban ân sủng của Chúa Thánh Thần, để Ngài chữa lành và biến đổi chúng ta. [222]"
+			},
+			{
+				question: "20. H. Các bí tích giúp chúng ta sống đời sống vĩnh cửu thế nào?",
+				tips: "Thưa. Các bí tích cho chúng ta ______ ______ vào đời sống vĩnh cửu, đang khi ______ ______ Đức Kitô ngự đến trong vinh quang. [223]",
+				correctAnswers: "Thưa. Các bí tích cho chúng ta tham dự trước vào đời sống vĩnh cửu, đang khi mong chờ ngày Đức Kitô ngự đến trong vinh quang. [223]"
+			},
+			{
+				question: "21. H. Bí Tích Rửa Tội là gì?",
+				tips: "Thưa. Là bí tích Chúa Giê su đã lập, để ______ chúng ta ______ trong đời sống mới bởi ______ và ______. [243]",
+				correctAnswers: "Thưa. Là bí tích Chúa Giê su đã lập, để làm cho chúng ta được sinh lại trong đời sống mới bởi nước và Thánh Thần. [243]"
+			},
+			{
+				question: "22. H. Nghi thức chính yếu của Bí Tích Rửa Tội là gì?",
+				tips: "Thưa. Nghi thức chính yếu của Bí Tích Rửa Tội là ______ xuống nước hay ______ nước trên đầu người lãnh bí tích. [248]",
+				correctAnswers: "Thưa. Nghi thức chính yếu của Bí Tích Rửa Tội là dìm xuống nước hay đổ nước trên đầu người lãnh bí tích và nói: “Tôi rửa anh, nhân danh Cha và Con và Thánh Thần.” [248]"
+			},
+			{
+				question: "23. H. Bí Tích Rửa Tội có cần thiết cho ơn cứu độ không?",
+				tips: "Thưa. Bí Tích Rửa Tội ______ ______ cho ơn cứu độ, đối với những ai đã ______ rao giảng Tin Mừng và có khả năng ______ bí tích này. [255]",
+				correctAnswers: "Thưa. Bí Tích Rửa Tội cần thiết cho ơn cứu độ, đối với những ai đã nghe rao giảng Tin Mừng và có khả năng xin lãnh nhận bí tích này. [255]"
+			},
+			{
+				question: "24. H. Người không lãnh nhận Bí Tích Rửa Tội có được cứu độ không?",
+				tips: "Thưa. Người không lãnh Bí Tích Rửa Tội có thể ______ ______ trong ba trường hợp này: ______, ______, ______. [256]",
+				correctAnswers: "Thưa. Người không lãnh Bí Tích Rửa Tội có thể được cứu độ trong ba trường hợp này: - Một là chết vì đức tin; - Hai là có lòng ước ao nhưng chưa có điều kiện lãnh nhận Bí Tích Rửa Tội; - Ba là chưa được biết Chúa Kitô và Hội Thánh, nhưng đã theo tiếng lương tâm mà sống ngay lành. [256]"
+			},
+			{
+				question: "25. H. Bí Tích Rửa Tội ban cho chúng ta những ơn nào?",
+				tips: "Thưa. Bí Tích Rửa Tội ban cho chúng ta ______ ______: ______, ______, ______, ______. [257]",
+				correctAnswers: "Thưa. Bí Tích Rửa Tội ban cho chúng ta những ơn này: - Một là được tha tội tổ tông và các tội riêng đã phạm; - Hai là được làm con cái Thiên Chúa; - Ba là được tháp nhập vào Đức Kitô và Hội Thánh; - Bốn là được ghi vào linh hồn dấu ấn thiêng liêng không bao giờ xóa được. [257]"
+			},
+			{
+				question: "26. H. Bí Tích Thêm Sức là gì?",
+				tips: "Thưa. Là bí tích Chúa Giê su đã lập, để ______ ______ Chúa Thánh Thần, hầu giúp chúng ta ______ ơn Bí Tích Rửa Tội cách ______ và ______ hơn. [259]",
+				correctAnswers: "Thưa. Là bí tích Chúa Giê su đã lập, để ban tràn đầy Chúa Thánh Thần, hầu giúp chúng ta sống ơn Bí Tích Rửa Tội cách mạnh mẽ và tốt đẹp hơn. [259]"
+			},
+			{
+				question: "27. H. Nghi thức chính yếu của Bí Tích Thêm Sức là gì?",
+				tips: "Thưa. Là việc ______ thánh trên trán người đã lãnh Bí Tích Rửa Tội, cùng với việc ______ tay trên đầu người ấy. [260]",
+				correctAnswers: "Thưa. Là việc xức dầu thánh trên trán người đã lãnh Bí Tích Rửa Tội, cùng với việc đặt tay trên đầu người ấy và đọc rằng “Hãy lãnh nhận ấn tín ơn Chúa Thánh Thần.” [260]"
+			},
+			{
+				question: "28. H. Hiệu quả của Bí Tích Thêm Sức là gì?",
+				tips: "Thưa. Là việc ______ Chúa Thánh Thần trên người lãnh bí tích, nhờ đó họ được ______ không thể tẩy ______ và gia tăng ân sủng Bí Tích Rửa Tội. [261]",
+				correctAnswers: "Thưa. Là việc đổ tràn Chúa Thánh Thần trên người lãnh bí tích, nhờ đó họ được ghi ấn tín không thể tẩy xóa và gia tăng ân sủng Bí Tích Rửa Tội. [261]"
+			},
+			{
+				question: "29. H. Người muốn lãnh nhận Bí Tích Thêm Sức cần phải làm gì?",
+				tips: "Thưa. Người lãnh Bí Tích Thêm Sức phải làm ______ điều này: ______, ______, ______. [264]",
+				correctAnswers: "Thưa. Người lãnh Bí Tích Thêm Sức phải làm những điều này: - Một là phải sạch tội trọng; - Hai là phải học giáo lý, nhất là về Bí Tích Thêm Sức; - Ba là phải cầu nguyện sốt sắng và thật lòng ước ao lãnh nhận Chúa Thánh Thần. [264]"
+			},
+			{
+				question: "30. H. Người lãnh Bí Tích Thêm Sức có những bổn phận nào?",
+				tips: "Thưa. Người lãnh Bí Tích Thêm Sức có những ______ này: ______, ______, ______. [266]",
+				correctAnswers: "Thưa. Người lãnh Bí Tích Thêm Sức có những bổn phận này: - Một là nỗ lực thi hành Lời Chúa trong đời sống thường ngày; - Hai là góp phần xây dựng xã hội theo tinh thần Tin Mừng; - Ba là tích cực giới thiệu Chúa cho mọi người. [266]"
+			},
+			{
+				question: "31. H. Bí Tích Thánh Thể là gì?",
+				tips: "Thưa. Là bí tích Chúa Giê su đã lập, để ______ ______ lễ hy sinh trên ______ ______ và để ______ Mình Máu Ngài. [267]",
+				correctAnswers: "Thưa. Là bí tích Chúa Giê su đã lập, để tiếp tục lễ hy sinh trên Thánh giá và để ban Mình Máu Ngài, làm của ăn nuôi sống chúng ta. [267]"
+			},
+			{
+				question: "32. H. Chúa Giê su đã lập Bí Tích Thánh Thể thế nào?",
+				tips: "Thưa. Khi ______ nộp mình ______ khổ hình, Chúa Giê su cầm lấy ______, tạ ơn, bẻ ra và ______ cho các môn đệ. [269]",
+				correctAnswers: "Thưa. Khi tự nguyện nộp mình chịu khổ hình, Chúa Giê su cầm lấy bánh, tạ ơn, bẻ ra và trao cho các môn đệ mà nói: “Tất cả các con hãy nhận lấy mà ăn: vì này là mình Thầy, sẽ bị nộp vì các con”. Cùng một thể thức ấy, sau bữa ăn tối, Người cầm lấy chén rượu, cũng tạ ơn, trao cho các môn đệ mà nói: “Tất cả các con hãy nhận lấy mà uống: vì này là chén máu Thầy, máu Giao ước mới và vĩnh cửu, sẽ đổ ra cho các con và nhiều người được tha tội: Các con hãy làm việc này mà nhớ đến Thầy.” [269]"
+			},
+			{
+				question: "33. H. Bí Tích Thánh Thể có ý nghĩa gì trong đời sống Kitô giáo?",
+				tips: "Thưa. Bí Tích Thánh Thể là ______ ______ và ______ của toàn bộ đời sống Kitô giáo. [270]",
+				correctAnswers: "Thưa. Bí Tích Thánh Thể là nguồn mạch và tột đỉnh của toàn bộ đời sống Kitô giáo, chứa đựng tất cả kho tàng thiêng liêng của Hội Thánh là chính Đức Kitô, Chiên Vượt Qua của chúng ta. [270]"
+			},
+			{
+				question: "34. H. Hội Thánh cử hành Bí Tích Thánh Thể thế nào?",
+				tips: "Thưa. Hội Thánh cử hành Bí Tích Thánh Thể trong ______, gồm hai phần chính: ______ và ______. [279]",
+				correctAnswers: "Thưa. Hội Thánh cử hành Bí Tích Thánh Thể trong Thánh lễ, gồm hai phần chính: - Một là Phụng vụ Lời Chúa, khởi đi từ lời nguyện nhập lễ cho đến hết lời nguyện chung; - Hai là Phụng vụ Thánh Thể, khởi đi từ việc chuẩn bị lễ vật cho đến hết lời nguyện hiệp lễ. [279]"
+			},
+			{
+				question: "35. H. Hội Thánh dạy thế nào về việc rước lễ?",
+				tips: "Thưa. Hội Thánh khuyên các tín hữu ______ lễ mỗi khi tham dự ______, và buộc ______ một năm ít là một lần trong ______. [288]",
+				correctAnswers: "Thưa. Hội Thánh khuyên các tín hữu rước lễ mỗi khi tham dự Thánh lễ, và buộc rước lễ một năm ít là một lần trong mùa Phục Sinh. [288]"
+			},
+			{
+				question: "36. H. Phải có điều kiện nào để được rước lễ?",
+				tips: "Thưa. Phải có những ______ này: ______, ______, ______, ______. [289]",
+				correctAnswers: "Thưa. Phải có những điều kiện này: - Một là hoàn toàn thuộc về Hội Thánh Công Giáo; - Hai là ý thức mình không có tội trọng; - Ba là phải giữ chay theo quy định của Hội Thánh; - Bốn là có thái độ tôn kính Đức Kitô. [289]"
+			},
+			{
+				question: "37. H. Việc rước lễ đem lại cho chúng ta những ơn ích nào?",
+				tips: "Thưa. Việc rước lễ làm cho chúng ta ______ ______ mật thiết với Đức Kitô và Hội Thánh, được ______ các tội nhẹ, gia tăng ______ và lòng yêu mến ______. [290]",
+				correctAnswers: "Thưa. Việc rước lễ làm cho chúng ta được kết hợp mật thiết với Đức Kitô và Hội Thánh, được tẩy xóa các tội nhẹ, gia tăng ân sủng và lòng yêu mến tha nhân. [290]"
+			},
+			{
+				question: "38. H. Bí Tích Thống Hối là gì?",
+				tips: "Thưa. Là bí tích Chúa Giê su đã lập, để ______ các tội ______ chúng ta đã phạm từ khi lãnh Bí Tích Rửa Tội về sau. [294]",
+				correctAnswers: "Thưa. Là bí tích Chúa Giê su đã lập, để tha các tội riêng chúng ta đã phạm từ khi lãnh Bí Tích Rửa Tội về sau, cùng giao hòa chúng ta với Thiên Chúa và Hội Thánh. [294]"
+			},
+			{
+				question: "39. H. Chúa Giê su đã lập Bí Tích Thống Hối khi nào?",
+				tips: "Thưa. Chúa Giê su đã lập Bí Tích Thống Hối khi ______ ______ với các Tông đồ vào chiều ngày ______ ______. [295]",
+				correctAnswers: "Thưa. Chúa Giê su đã lập Bí Tích Thống Hối khi Ngài hiện ra với các Tông đồ vào chiều ngày Phục Sinh và nói rằng: “Anh em hãy nhận lấy Thánh Thần; anh em tha tội cho ai, thì tội người ấy được tha; anh em cầm giữ ai, thì tội người ấy bị cầm giữ.” [295]"
+			},
+			{
+				question: "40. H. Bí Tích Thống Hối có những yếu tố chính yếu nào?",
+				tips: "Thưa. Bí Tích Thống Hối có hai yếu tố ______ này: ______ và ______. [296]",
+				correctAnswers: "Thưa. Bí Tích Thống Hối có hai yếu tố chính yếu này: - Một là hành vi của người sám hối; - Hai là lời xá giải của linh mục. [296]"
+			},
+			{
+				question: "41. H. Muốn lãnh nhận Bí Tích Thống Hối chúng ta phải làm gì?",
+				tips: "Thưa. Muốn lãnh Bí Tích Thống Hối chúng ta phải làm ______ việc này: ______, ______, ______, ______. [297]",
+				correctAnswers: "Thưa. Muốn lãnh Bí Tích Thống Hối chúng ta phải làm bốn việc này: - Một là xét mình; - Hai là ăn năn và dốc lòng chừa; - Ba là xưng tội; - Bốn là đền tội. [297]"
+			},
+			{
+				question: "42. H. Khi nào các tín hữu buộc phải xưng các tội trọng?",
+				tips: "Thưa. Khi đến ______ khôn, mọi tín hữu buộc ______ xưng các tội ______ của mình ít nhất một năm một lần. [302]",
+				correctAnswers: "Thưa. Khi đến tuổi khôn, mọi tín hữu buộc phải xưng các tội trọng của mình ít nhất một năm một lần và trong mọi trường hợp, phải xưng các tội trọng trước khi rước lễ. [302]"
+			},
+			{
+				question: "43. H. Bí Tích Thống Hối có những hiệu quả nào?",
+				tips: "Thưa. Bí Tích Thống Hối có những ______ này: ______, ______, ______. [308]",
+				correctAnswers: "Thưa. Bí Tích Thống Hối có những hiệu quả này: - Một là tha tội để giao hòa chúng ta với Thiên Chúa và Hội Thánh; - Hai là tha hình phạt muôn đời do các tội trọng đã gây ra và tha một phần các hình phạt tạm; - Ba là ban sự bình an và gia tăng sức mạnh cho cuộc chiến đấu thiêng liêng của người Kitô hữu. [308]"
+			},
+			{
+				question: "44. H. Ân xá là gì?",
+				tips: "Thưa. Ân xá là việc ______ những hình phạt tạm ______ vì những tội chúng ta đã ______. [310]",
+				correctAnswers: "Thưa. Ân xá là việc tha thứ những hình phạt tạm đáng chịu vì những tội chúng ta đã phạm, dù những tội này đã được tha thứ. [310]"
+			},
+			{
+				question: "45. H. Bí Tích Xức Dầu Bệnh Nhân là gì?",
+				tips: "Thưa. Là bí tích Chúa Giê su đã lập, để ______ ơn ______ bệnh nhân và người ______ yếu. [312]",
+				correctAnswers: "Thưa. Là bí tích Chúa Giê su đã lập, để ban ơn nâng đỡ bệnh nhân và người già yếu, về phần hồn cũng như phần xác. [312]"
+			},
+			{
+				question: "46. H. Ai có thể lãnh Bí Tích Xức Dầu?",
+				tips: "Thưa. Mọi tín hữu khi ______ nặng, khi gặp ______ tử hoặc bị ______ vì tuổi già, đều có thể lãnh Bí Tích Xức Dầu. [316]",
+				correctAnswers: "Thưa. Mọi tín hữu khi lâm bệnh nặng, khi gặp nguy tử hoặc bị yếu liệt vì tuổi già, đều có thể lãnh Bí Tích Xức Dầu. [316]"
+			},
+			{
+				question: "47. H. Bí Tích Xức Dầu được cử hành thế nào?",
+				tips: "Thưa. Bí Tích Xức Dầu được cử hành qua việc ______ dầu trên ______ và ______ bàn tay, với lời nguyện xin ______ của bí tích này. [318]",
+				correctAnswers: "Thưa. Bí Tích Xức Dầu được cử hành qua việc xức dầu trên trán và hai lòng bàn tay, với lời nguyện xin ân sủng của bí tích này. [318]"
+			},
+			{
+				question: "48. H. Bí Tích Xức Dầu có những hiệu quả nào?",
+				tips: "Thưa. Bí Tích Xức Dầu có những ______ này: ______, ______, ______. [319]",
+				correctAnswers: "Thưa. Bí Tích Xức Dầu có những hiệu quả này: - Một là kết hợp bệnh nhân với cuộc khổ nạn của Chúa Kitô, để sinh ích cho họ và cho Hội Thánh; - Hai là mang lại cho họ niềm an ủi và lòng can đảm, để chịu đựng những đau đớn của bệnh tật hoặc tuổi già; - Ba là tha thứ các tội lỗi đã phạm nếu chưa xưng được; - Bốn là chữa lành thân xác nếu phù hợp với ý Chúa; - Năm là chuẩn bị cho “cuộc vượt qua” sang cõi sống đời đời. [319]"
+			},
+			{
+				question: "49. H. Bí Tích Truyền Chức Thánh là gì?",
+				tips: "Thưa. Là bí tích Chúa Giê su đã lập, để ______ ______ sứ vụ của Ngài cho các ______. [324]",
+				correctAnswers: "Thưa. Là bí tích Chúa Giê su đã lập, để ủy thác sứ vụ của Ngài cho các Tông đồ, nhờ đó sứ vụ này tiếp tục thực thi trong Hội Thánh cho đến ngày tận thế. [324]"
+			},
+			{
+				question: "50. H. Chúa Giê su lập Bí Tích Truyền Chức Thánh khi nào?",
+				tips: "Thưa. Chúa Giê su lập Bí Tích Truyền Chức Thánh trong ______ ______, khi Ngài nói với các Tông đồ rằng: “______ ______ việc này mà tưởng nhớ đến Thầy.” [325]",
+				correctAnswers: "Thưa. Chúa Giê su lập Bí Tích Truyền Chức Thánh trong Bữa Tiệc Ly, khi Ngài nói với các Tông đồ rằng: “Anh em hãy làm việc này mà tưởng nhớ đến Thầy.” [325]"
+			},
+			{
+				question: "51. H. Bí Tích Truyền Chức Thánh có những hiệu quả nào?",
+				tips: "Thưa. Bí Tích Truyền Chức Thánh có những ______ này: ______, ______, ______. [329]",
+				correctAnswers: "Thưa. Bí Tích Truyền Chức Thánh có những hiệu quả này: - Một là ban tràn đầy Chúa Thánh Thần; - Hai là làm cho người thụ phong nên đồng hình đồng dạng với Đức Kitô trong ba chức năng tư tế, tiên tri và vương đế theo từng cấp bậc của Bí Tích Truyền Chức Thánh; - Ba là trao ban một ấn tín thiêng liêng không tẩy xóa được. [329]"
+			},
+			{
+				question: "52. H. Bí Tích Truyền Chức Thánh gồm những cấp bậc nào?",
+				tips: "Thưa. Bí Tích Truyền Chức Thánh gồm ______ cấp bậc này: ______, ______, ______. [330]",
+				correctAnswers: "Thưa. Bí Tích Truyền Chức Thánh gồm ba cấp bậc này: một là phó tế, hai là linh mục, ba là giám mục. [330]"
+			},
+			{
+				question: "53. H. Những người lãnh Bí Tích Truyền Chức Thánh thi hành tác vụ với thẩm quyền nào?",
+				tips: "Thưa. Những người lãnh Bí Tích Truyền Chức Thánh thi hành ______ với ______ không do cộng đoàn ủy thác. [340]",
+				correctAnswers: "Thưa. Những người lãnh Bí Tích Truyền Chức Thánh thi hành tác vụ với thẩm quyền không do cộng đoàn ủy thác, nhưng do Đức Kitô trao ban. Họ thi hành tác vụ trong cương vị Đức Kitô là Đầu và nhân danh Hội Thánh. Vì thế, chức tư tế thừa tác khác biệt với chức tư tế cộng đồng mà các tín hữu đã lãnh nhận khi được rửa tội. [340]"
+			},
+			{
+				question: "54. H. Người tín hữu có bổn phận nào đối với các vị Chủ chăn của mình?",
+				tips: "Thưa. Người tín hữu có bổn phận ______, ______, ______ và ______ với các vị Chủ chăn của mình. [341]",
+				correctAnswers: "Thưa. Người tín hữu có bổn phận cầu nguyện, tôn trọng, vâng lời và cộng tác với các vị Chủ chăn của mình trong việc xây dựng Hội Thánh, đồng thời giúp đỡ các ngài về cả tinh thần lẫn vật chất. [341]"
+			},
+			{
+				question: "55. H. Bí Tích Hôn Phối là gì?",
+				tips: "Thưa. Là bí tích Chúa Giê su đã lập, để ______ hai người tín hữu ______ thành vợ chồng trước mặt ______ và ______. [342]",
+				correctAnswers: "Thưa. Là bí tích Chúa Giê su đã lập, để kết hợp hai người tín hữu một nam một nữ thành vợ chồng trước mặt Thiên Chúa và Hội Thánh, cùng ban ân sủng để họ yêu thương nhau như Ngài đã yêu thương Hội Thánh. [342]"
+			},
+			{
+				question: "56. H. Hôn nhân Công giáo có mục đích nào?",
+				tips: "Thưa. Hôn nhân Công giáo có hai ______ này: ______ và ______. [346]",
+				correctAnswers: "Thưa. Hôn nhân Công giáo có hai mục đích này: - Một là trọn đời yêu thương nhau; - Hai là sinh sản và dưỡng dục con cái. [346]"
+			},
+			{
+				question: "57. H. Bí Tích Hôn Phối được cử hành thế nào?",
+				tips: "Thưa. Bí Tích Hôn Phối được cử hành cách ______, trước sự ______ của vị đại diện Hội Thánh. [347]",
+				correctAnswers: "Thưa. Bí Tích Hôn Phối được cử hành cách công khai, trước sự chứng kiến của vị đại diện Hội Thánh và những người làm chứng. [347]"
+			},
+			{
+				question: "58. H. Muốn lãnh Bí Tích Hôn Phối phải có những điều kiện nào?",
+				tips: "Thưa. Muốn lãnh Bí Tích Hôn Phối phải có những ______ này: ______, ______, ______, ______. [348]",
+				correctAnswers: "Thưa. Muốn lãnh Bí Tích Hôn Phối phải có những điều kiện này: - Một là đã lãnh nhận Bí Tích Rửa Tội; - Hai là không bị ngăn trở bởi luật tự nhiên và luật Hội Thánh; - Ba là hiểu biết về Bí Tích Hôn Phối và đời sống gia đình; - Bốn là có tự do kết hôn và công khai nói lên sự ưng thuận của mình theo nghi thức Hội Thánh. [348]"
+			},
+			{
+				question: "59. H. Hiệu quả của Bí Tích Hôn Phối là gì?",
+				tips: "Thưa. Bí Tích Hôn Phối tạo nên ______ ______ ______ và ______ giữa hai người phối ngẫu. [352]",
+				correctAnswers: "Thưa. Bí Tích Hôn Phối tạo nên mối dây liên kết vĩnh viễn và độc chiếm giữa hai người phối ngẫu. Vì thế hôn nhân thành sự và hoàn hợp giữa những người đã được rửa tội không bao giờ có thể tháo gỡ được. Bí Tích Hôn Phối còn ban ân sủng cần thiết để họ đạt tới sự thánh thiện trong đời sống hôn nhân. [352]"
+			}
+		];
+
+		let currentQuestionIndex = 0;
+
+		const questionsContainer = document.getElementById('questionsContainer');
+		const tipsElement = document.getElementById('tips');
+		const checkButton = document.getElementById('checkButton');
+		const tipsButton = document.getElementById('tipsButton');
+		const prevButton = document.getElementById('prevButton');
+		const nextButton = document.getElementById('nextButton');
+		const showAnswerButton = document.getElementById('showAnswerButton');
+		const correctSound = document.getElementById('correctSound');
+		const incorrectSound = document.getElementById('incorrectSound');
+		const randomButton = document.getElementById('randomButton');
+		const searchButton = document.getElementById('searchButton');
+		const questionNumberInput = document.getElementById('questionNumberInput');
+
+		function loadQuestion(index) {
+			const questionObject = questions[index];
+
+			// Clear previous content
+			questionsContainer.innerHTML = '';
+			tipsElement.innerText = '';
+			document.getElementById('result').innerText = '';
+			document.getElementById('correctAnswers').style.display = 'none';
+
+			// Create question element
+			const questionElement = document.createElement('p');
+			questionElement.className = 'question';
+			questionElement.innerHTML = questionObject.question;
+
+			// Create answer input with default text
+			const answerInput = document.createElement('textarea');
+			answerInput.className = 'input-box';
+			answerInput.rows = 3;
+			answerInput.value = "Thưa. "; // Điền sẵn chữ "Thưa. "
+
+			questionsContainer.appendChild(questionElement);
+			questionsContainer.appendChild(answerInput);
+			questionsContainer.style.display = 'block';
+
+			// Update button visibility
+			prevButton.style.display = index > 0 ? 'inline-block' : 'none';
+			nextButton.style.display = index < questions.length - 1 ? 'inline-block' : 'none';
+			showAnswerButton.style.display = 'none';
+		}
+
+		function checkAnswers() {
+			const input = document.querySelector('.input-box');
+			const correctAnswer = questions[currentQuestionIndex].correctAnswers;
+			const userAnswer = input.value.trim();
+
+			// Set the border color based on the answer
+			if (userAnswer === correctAnswer) {
+				input.classList.add('correct');
+				input.classList.remove('incorrect');
+				correctSound.play(); // Phát âm thanh đúng
+			} else {
+				input.classList.add('incorrect');
+				input.classList.remove('correct');
+				incorrectSound.play(); // Phát âm thanh sai
+			}
+
+			// Show "Xem đáp án" button
+			showAnswerButton.style.display = 'inline-block';
+			document.getElementById('result').innerText = userAnswer === correctAnswer ? 'Đúng rồi đấy người đẹp :v' : 'Sai rồi người đẹp :)))';
+		}
+
+		searchButton.onclick = function () {
+			const questionNumber = parseInt(questionNumberInput.value) - 1; // Giảm 1 để phù hợp với chỉ số 0
+			if (questionNumber >= 0 && questionNumber < questions.length) {
+				currentQuestionIndex = questionNumber;
+				loadQuestion(currentQuestionIndex);
+			} else {
+				alert("Số câu hỏi không hợp lệ.");
+			}
+		};
+
+		randomButton.onclick = function () {
+			currentQuestionIndex = Math.floor(Math.random() * questions.length); // Chọn câu hỏi ngẫu nhiên
+			loadQuestion(currentQuestionIndex);
+		};
+
+		tipsButton.onclick = function () {
+			const tips = questions[currentQuestionIndex].tips;
+			tipsElement.innerText = tips;
+			tipsElement.style.display = 'block';
+		};
+
+		nextButton.onclick = function () {
+			currentQuestionIndex++;
+			loadQuestion(currentQuestionIndex);
+		};
+
+		prevButton.onclick = function () {
+			currentQuestionIndex--;
+			loadQuestion(currentQuestionIndex);
+		};
+
+		checkButton.onclick = checkAnswers;
+
+		showAnswerButton.onclick = function () {
+			document.getElementById('correctAnswers').innerText = questions[currentQuestionIndex].correctAnswers;
+			document.getElementById('correctAnswers').style.display = 'block';
+		};
+
+		// Load the first question on page load
+		loadQuestion(currentQuestionIndex);
+	</script>
+
+</body>
+
+</html>
