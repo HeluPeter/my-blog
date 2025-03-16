@@ -594,13 +594,21 @@
 			showAnswerButton.style.display = 'none';
 		}
 
+		function normalizeAnswer(answer) {
+			return answer.toLowerCase().replace(/[.,]/g,'').trim();
+		}
+
 		function checkAnswers() {
 			const input = document.querySelector('.input-box');
 			const correctAnswer = questions[currentQuestionIndex].correctAnswers;
 			const userAnswer = input.value.trim();
 
+			// Chuẩn hóa đáp án
+			const normalizedUserAnswer = normalizeAnswer(userAnswer);
+			const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
+
 			// Set the border color based on the answer
-			if (userAnswer === correctAnswer) {
+			if (normalizedUserAnswer === normalizedCorrectAnswer) {
 				input.classList.add('correct');
 				input.classList.remove('incorrect');
 				correctSound.play(); // Phát âm thanh đúng
@@ -612,7 +620,7 @@
 
 			// Show "Xem đáp án" button
 			showAnswerButton.style.display = 'inline-block';
-			document.getElementById('result').innerText = userAnswer === correctAnswer ? 'Đúng rồi đấy người đẹp :v' : 'Sai rồi người đẹp :)))';
+			document.getElementById('result').innerText = normalizedUserAnswer === normalizedCorrectAnswer ? 'Đúng rồi đấy người đẹp :v' : 'Sai rồi người đẹp :)))';
 		}
 
 		searchButton.onclick = function () {
