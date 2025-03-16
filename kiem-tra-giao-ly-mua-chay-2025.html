@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
 		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 	<link rel="stylesheet" type="text/css" href="styles.css">
 
@@ -223,6 +224,31 @@
 				margin-bottom: 20px;
 			}
 		}
+
+		.social-icons {
+			display: flex;
+			justify-content: center;
+			margin-top: 15px;
+			margin-bottom: 20px;
+		}
+
+		.social-icons a {
+			font-size: 50px;
+			margin: 0 5px;
+			transition: transform 0.3s;
+		}
+
+		.spotify-icon i {
+			color: #1DB954;
+		}
+
+		.youtube-icon i {
+			color: #FF0000;
+		}
+
+		.social-icons a:hover {
+			transform: scale(1.1);
+		}
 	</style>
 </head>
 
@@ -231,6 +257,16 @@
 	<div class="container">
 		<h1 class="title">CHƯƠNG TRÌNH HỌC HỎI GIÁO LÝ NĂM THÁNH 2025</h1>
 		<h2 class="subtitle">NĂM CANH TÂN ĐỜI SỐNG ĐỨC TIN TRONG CỬ HÀNH PHỤNG VỤ</h2>
+		<div class="social-icons">
+			<a href="https://open.spotify.com/show/28sYNBarxLqwgwE0MKrFly?si=10d096e1d83e482a" target="_blank"
+				class="spotify-icon">
+				<i class="fab fa-spotify"></i>
+			</a>
+			<a href="https://youtu.be/nWVcM5Rix0o" target="_blank" class="youtube-icon">
+				<i class="fab fa-youtube"></i>
+			</a>
+		</div>
+
 		<input type="number" id="questionNumberInput" placeholder="Nhập số câu hỏi" />
 		<button id="searchButton">Tìm Câu Hỏi</button>
 		<button id="randomButton">Câu Hỏi Ngẫu Nhiên</button>
