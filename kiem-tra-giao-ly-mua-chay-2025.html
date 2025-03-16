@@ -595,7 +595,13 @@
 		}
 
 		function normalizeAnswer(answer) {
-			return answer.toLowerCase().replace(/[.,]/g,'').trim();
+			return answer
+				.replace(/“|”|"/g,'') // Loại bỏ dấu nháy
+				.replace(/-/g,'') // Loại bỏ dấu gạch nối
+				.replace(/[.,]/g,'') // Loại bỏ dấu chấm và phẩy
+				.replace(/\s+/g,' ') // Thay thế nhiều khoảng trắng bằng một khoảng trắng
+				.trim() // Cắt bỏ khoảng trắng thừa
+				.toLowerCase(); // Chuyển đổi thành chữ thường
 		}
 
 		function checkAnswers() {
@@ -605,10 +611,17 @@
 
 			// Chuẩn hóa đáp án
 			const normalizedUserAnswer = normalizeAnswer(userAnswer);
+			console.log(normalizedUserAnswer)
 			const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
+			console.log(normalizedCorrectAnswer)
+			// So sánh nội dung
+			const userWords = normalizedUserAnswer.split(' ');
+			const correctWords = normalizedCorrectAnswer.split(' ');
+
+			const isCorrect = correctWords.every(word => userWords.includes(word)); // Kiểm tra xem tất cả từ trong đáp án đúng có trong đáp án người dùng
 
 			// Set the border color based on the answer
-			if (normalizedUserAnswer === normalizedCorrectAnswer) {
+			if (isCorrect) {
 				input.classList.add('correct');
 				input.classList.remove('incorrect');
 				correctSound.play(); // Phát âm thanh đúng
@@ -620,7 +633,7 @@
 
 			// Show "Xem đáp án" button
 			showAnswerButton.style.display = 'inline-block';
-			document.getElementById('result').innerText = normalizedUserAnswer === normalizedCorrectAnswer ? 'Đúng rồi đấy người đẹp :v' : 'Sai rồi người đẹp :)))';
+			document.getElementById('result').innerText = isCorrect ? 'Đúng rồi đấy người đẹp :v' : 'Sai rồi người đẹp :)))';
 		}
 
 		searchButton.onclick = function () {
