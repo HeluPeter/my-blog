@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Điền Từ Vào Chỗ Trống</title>
+	<style>
+		#fill-in-the-blank input {
+			width: 100px;
+			text-align: center;
+			margin: 5px;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		#fill-in-the-blank input:focus {
+			border-color: #007bff;
+			/* Màu sắc khi ô được chọn */
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="fill-in-the-blank"></div>
+
+	<script>
+		const questions = [
+			{
+				question: "1. H. Phụng vụ là gì?",
+				correctAnswers: "Phụng, vụ, là, việc, Hội, Thánh, chính, thức, cử, hành, mầu, nhiệm, Đức, Kitô, để, thờ, phượng, Thiên, Chúa, và, thánh, hóa, con, người"
+			}
+		];
+
+		function createFillInTheBlanks(question) {
+			const container = document.getElementById("fill-in-the-blank");
+			container.innerHTML = `<p>${question.question}</p>`;
+
+			const correctWords = question.correctAnswers.split(",").map(word => word.trim());
+
+			correctWords.forEach((word,index) => {
+				const input = document.createElement("input");
+
+				input.type = "text";
+				input.placeholder = word; // Hiển thị từ cần điền
+				input.dataset.index = index; // Lưu chỉ số của ô để kiểm tra
+				// Thêm sự kiện khi người dùng nhập
+				input.addEventListener("input",() => checkAnswer(input,correctWords[index],correctWords));
+
+				container.appendChild(input);
+			});
+		}
+
+		function checkAnswer(input,correctAnswer,correctWords) {
+
+			const userAnswer = input.value.trim(); // Lấy đáp án người dùng nhập
+
+
+			if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+				input.style.borderColor = "green"; // Đúng
+
+				// Tự động chuyển sang ô tiếp theo
+				const nextInput = input.nextElementSibling;
+
+				if (nextInput) {
+					nextInput.focus();
+					nextInput.value = ""
+					// Xóa nội dung ô hiện tại
+				}
+				console.log("👿 > checkAnswer > nextInput:",nextInput)
+
+			} else {
+				input.style.borderColor = "red"; // Sai
+
+			}
+		}
+
+		document.addEventListener("DOMContentLoaded",() => {
+			createFillInTheBlanks(questions[0]); // Hiển thị câu hỏi đầu tiên
+		});
+	</script>
+</body>
+
+</html>
