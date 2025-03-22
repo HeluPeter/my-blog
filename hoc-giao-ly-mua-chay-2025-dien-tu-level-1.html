@@ -484,21 +484,27 @@
 			questionElement.textContent = questions[currentQuestionIndex].question;
 			quizContainer.innerHTML = ''; // Xóa ô nhập cũ
 
-			// Thêm ô "Thưa." vào quizContainer
-			const thuaInput = document.createElement('input');
-			thuaInput.type = 'text';
-			thuaInput.value = 'Thưa.';
-			thuaInput.className = 'input-box correct';
-			thuaInput.disabled = true;
-			quizContainer.appendChild(thuaInput);
-
-
 			correctAnswers = questions[currentQuestionIndex].correctAnswers.split(','); // Cập nhật lại correctAnswers
+			const numberOfFilledAnswers = Math.ceil(correctAnswers.length * 0.5); // 50%
+
+			// Điền sẵn các từ
+			const filledAnswers = new Set();
+			while (filledAnswers.size < numberOfFilledAnswers) {
+				const index = Math.floor(Math.random() * correctAnswers.length);
+				filledAnswers.add(index);
+			}
+
 			correctAnswers.forEach((answer,index) => {
 				const inputBox = document.createElement('input');
 				inputBox.type = 'text';
 				inputBox.className = 'input-box';
 				inputBox.dataset.index = index;
+
+				if (filledAnswers.has(index)) {
+					inputBox.value = answer; // Điền sẵn
+					inputBox.className = 'input-box correct';
+					inputBox.disabled = true; // Đặt ô này là disabled
+				}
 
 				inputBox.addEventListener('keydown',(event) => {
 					if (event.key === ' ') {
@@ -509,6 +515,7 @@
 
 				quizContainer.appendChild(inputBox);
 			});
+
 			errorMessage.textContent = ''; // Xóa thông báo lỗi
 			updateNavigationButtons();
 		}
@@ -517,15 +524,26 @@
 			const currentValue = inputBox.value.trim().toLowerCase();
 			if (currentValue === answer.toLowerCase()) {
 				inputBox.classList.add('correct');
-				const nextInput = quizContainer.querySelector(`input[data-index="${index + 1}"]`);
+				const nextInput = getNextInput(index);
 				if (nextInput) {
 					nextInput.focus(); // Chuyển đến ô tiếp theo
 					errorMessage.textContent = ''; // Xóa thông báo lỗi
 				}
 			} else {
 				inputBox.classList.remove('correct');
-				errorMessage.textContent = `Sai rồi bạn êiii! Gợi ý cho bạn nè "${answer.substring(0,2)}...".`;
+				errorMessage.textContent = `Sai rồi bạn êiii! Gợi ý cho bạn bè "${answer.substring(0,2)}".`;
 			}
+		}
+
+		function getNextInput(currentIndex) {
+			// Tìm ô nhập tiếp theo không bị disabled
+			for (let i = currentIndex + 1; i < quizContainer.children.length; i++) {
+				const inputBox = quizContainer.children[i];
+				if (!inputBox.disabled) {
+					return inputBox; // Trả về ô nhập tiếp theo không bị disabled
+				}
+			}
+			return null; // Không tìm thấy ô nhập tiếp theo
 		}
 
 		function updateNavigationButtons() {
@@ -548,8 +566,8 @@
 		});
 
 		searchButton.addEventListener('click',() => {
-			const searchTerm = searchInput.value.toLowerCase();
-			const foundIndex = questions.findIndex(q => q.question.toLowerCase().includes(searchTerm));
+			const searchTerm = searchInput.value.trim();
+			const foundIndex = questions.findIndex(q => q.question.startsWith(searchTerm));
 			if (foundIndex !== -1) {
 				currentQuestionIndex = foundIndex;
 				loadQuestion();
