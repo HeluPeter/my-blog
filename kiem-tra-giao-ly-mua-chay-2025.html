@@ -11,12 +11,9 @@
 		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 	<!-- Fontawesome -->
-
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
 		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 	<link rel="stylesheet" type="text/css" href="styles.css">
 
 	<title>Giáo Lý Mùa Chay - Năm Thánh 2025</title>
@@ -92,11 +89,10 @@
 			margin-top: 10px;
 			font-style: italic;
 			color: #555;
-			text-align: center;
+			/* text-align: center; */
 		}
 
 		#buttons {
-			/* display: flex; */
 			justify-content: space-between;
 			margin-top: 20px;
 		}
@@ -191,64 +187,11 @@
 			padding: 10px 15px;
 			font-size: 16px;
 			color: white;
-			background-color: #3498db;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-			transition: background-color 0.3s;
 		}
 
-		button:hover {
-			background-color: #2980b9;
-		}
-
-		@media (max-width: 600px) {
-			.input-container {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-			}
-
-			#questionNumberInput {
-				flex: 1;
-				margin-right: 10px;
-				margin-bottom: 0px;
-			}
-
-			button {
-				width: auto;
-			}
-
-			#randomButton {
-				margin-top: 10px;
-				width: 100%;
-				margin-bottom: 20px;
-			}
-		}
-
-		.social-icons {
-			display: flex;
-			justify-content: center;
-			margin-top: 15px;
-			margin-bottom: 20px;
-		}
-
-		.social-icons a {
-			font-size: 50px;
-			margin: 0 5px;
-			transition: transform 0.3s;
-		}
-
-		.spotify-icon i {
-			color: #1DB954;
-		}
-
-		.youtube-icon i {
-			color: #FF0000;
-		}
-
-		.social-icons a:hover {
-			transform: scale(1.1);
+		.highlight {
+			color: red;
+			font-weight: bold;
 		}
 	</style>
 </head>
@@ -258,20 +201,12 @@
 	<div class="container">
 		<h1 class="title">CHƯƠNG TRÌNH HỌC HỎI GIÁO LÝ NĂM THÁNH 2025</h1>
 		<h2 class="subtitle">NĂM CANH TÂN ĐỜI SỐNG ĐỨC TIN TRONG CỬ HÀNH PHỤNG VỤ</h2>
-		<div class="social-icons">
-			<a href="https://open.spotify.com/show/28sYNBarxLqwgwE0MKrFly?si=10d096e1d83e482a" target="_blank"
-				class="spotify-icon">
-				<i class="fab fa-spotify"></i>
-			</a>
-			<a href="https://youtu.be/nWVcM5Rix0o" target="_blank" class="youtube-icon">
-				<i class="fab fa-youtube"></i>
-			</a>
-		</div>
 
 		<input type="number" id="questionNumberInput" placeholder="Nhập số câu hỏi" />
 		<button id="searchButton">Tìm Câu Hỏi</button>
 		<button id="randomButton">Câu Hỏi Ngẫu Nhiên</button>
 		<div id="questionsContainer"></div>
+		<div id="userResponse" style="margin-top: 10px; font-size: 14px;"></div>
 		<div id="tips"></div>
 		<div id="buttons">
 			<button id="checkButton">Kiểm Tra</button>
@@ -608,6 +543,7 @@
 			questionsContainer.innerHTML = '';
 			tipsElement.innerText = '';
 			document.getElementById('result').innerText = '';
+			document.getElementById('userResponse').innerHTML = ''; // Xóa nội dung trước đó
 			document.getElementById('correctAnswers').style.display = 'none';
 
 			// Create question element
@@ -648,29 +584,56 @@
 
 			// Chuẩn hóa đáp án
 			const normalizedUserAnswer = normalizeAnswer(userAnswer);
-			console.log(normalizedUserAnswer)
 			const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
-			console.log(normalizedCorrectAnswer)
+
 			// So sánh nội dung
 			const userWords = normalizedUserAnswer.split(' ');
 			const correctWords = normalizedCorrectAnswer.split(' ');
 
-			const isCorrect = correctWords.every(word => userWords.includes(word)); // Kiểm tra xem tất cả từ trong đáp án đúng có trong đáp án người dùng
+			// Kiểm tra xem tất cả từ trong đáp án đúng có trong đáp án người dùng
+			const isCorrect = correctWords.every(word => userWords.includes(word));
 
 			// Set the border color based on the answer
 			if (isCorrect) {
 				input.classList.add('correct');
 				input.classList.remove('incorrect');
 				correctSound.play(); // Phát âm thanh đúng
+				document.getElementById('result').innerText = 'Đúng rồi đấy người đẹp :v';
+				document.getElementById('userResponse').innerHTML = ''; // Xóa nội dung trước đó
 			} else {
 				input.classList.add('incorrect');
 				input.classList.remove('correct');
 				incorrectSound.play(); // Phát âm thanh sai
+
+				// Tìm các từ sai và hiển thị câu trả lời của người dùng
+				displayUserResponse(userAnswer,correctWords);
+				document.getElementById('result').innerText = 'Sai rồi người đẹp :)))';
 			}
 
 			// Show "Xem đáp án" button
 			showAnswerButton.style.display = 'inline-block';
-			document.getElementById('result').innerText = isCorrect ? 'Đúng rồi đấy người đẹp :v' : 'Sai rồi người đẹp :)))';
+		}
+
+		function displayUserResponse(userAnswer,correctWords) {
+			const userWords = normalizeAnswer(userAnswer).split(' ');
+			let highlightedValue = userAnswer;
+
+			let hasErrors = false;
+
+			// Tìm và bôi đỏ các từ sai
+			userWords.forEach(word => {
+				if (!correctWords.includes(word)) {
+					hasErrors = true;
+					const regex = new RegExp(`(${word})`,'gi'); // Tạo biểu thức chính quy để tìm từ
+					highlightedValue = highlightedValue.replace(regex,'<span class="highlight">$1</span>'); // Bôi đỏ từ sai
+				}
+			});
+
+			if (hasErrors) {
+				document.getElementById('userResponse').innerHTML = highlightedValue; // Hiển thị câu trả lời
+			} else {
+				document.getElementById('userResponse').innerHTML = ''; // Xóa nội dung nếu không có lỗi
+			}
 		}
 
 		searchButton.onclick = function () {
@@ -690,7 +653,7 @@
 
 		tipsButton.onclick = function () {
 			const tips = questions[currentQuestionIndex].tips;
-			tipsElement.innerText = tips;
+			tipsElement.innerText = "Tips: [" + tips + "]";
 			tipsElement.style.display = 'block';
 		};
 
