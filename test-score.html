@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Chủ</title>
+  <script src="config.js"></script>
+  <script>
+    window.onload = function () {
+      const userId = sessionStorage.getItem("userId");
+      if (!userId) {
+        window.location.href = "login.html"; // Chuyển đến trang đăng nhập
+      }
+    };
+
+    function checkLogin() {
+      let userId = sessionStorage.getItem("userId");
+      let loginTime = sessionStorage.getItem("loginTime");
+
+      if (!userId || !loginTime || (Date.now() - loginTime > 30 * 60 * 1000)) {
+        alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("userIdDisplay").innerText = "ID: " + userId;
+      document.getElementById("scoreDisplay").innerText = "Điểm: " + sessionStorage.getItem("score");
+    }
+
+    function logout() {
+      sessionStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    window.onload = checkLogin;
+  </script>
+</head>
+
+<body>
+  <h2>Trang Chủ</h2>
+  <p id="userIdDisplay">ID: ?</p>
+  <p id="scoreDisplay">Điểm: ?</p>
+  <button onclick="logout()">Đăng Xuất</button>
+</body>
+
+</html>

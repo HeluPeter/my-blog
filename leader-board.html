@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="config.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      font-size: 62.5%;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      height: 100%;
+      width: 100%;
+      min-height: 100vh;
+      background-color: #fbfaff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    main {
+      width: 45rem;
+      height: auto;
+      background-color: #ffffff;
+      box-shadow: 0px 5px 15px 8px #e4e7fb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    #header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 2rem;
+    }
+
+    .share {
+      width: 4.5rem;
+      height: 3rem;
+      background-color: #2ecc71;
+      border: 0;
+      border-bottom: 0.2rem solid #2ecc71;
+      border-radius: 2rem;
+      cursor: pointer;
+    }
+
+    .share:active {
+      border-bottom: 0;
+    }
+
+    .share i {
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    h1 {
+      font-family: "Rubik", sans-serif;
+      font-size: 1.7rem;
+      color: #141a39;
+      text-transform: uppercase;
+      cursor: default;
+    }
+
+    #leaderboard {
+      width: 100%;
+      position: relative;
+      display: none;
+      /* Ẩn bảng trong lúc loading */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      color: #141a39;
+      cursor: default;
+      border: 1px solid #e4e7fb;
+      /* Thêm viền cho bảng */
+    }
+
+    tr {
+      transition: all 0.2s ease-in-out;
+      border-radius: 0.2rem;
+    }
+
+    tr:hover {
+      background-color: #fff;
+      transform: scale(1.05);
+      box-shadow: 0px 5px 15px 8px #e4e7fb;
+    }
+
+    tr.top1 {
+      background-color: #458fd7;
+      color: #fff;
+      box-shadow: 0px 5px 20px #e4e7fb;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+
+    td {
+      height: 5rem;
+      font-family: "Rubik", sans-serif;
+      font-size: 1.6rem;
+      padding: 1rem 2rem;
+      position: relative;
+    }
+
+    .number {
+      width: 1rem;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .name {
+      text-align: left;
+      font-size: 1.4rem;
+    }
+
+    .points {
+      font-weight: bold;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .gold-medal {
+      height: 3.5rem;
+      margin-left: 1.5rem;
+    }
+
+    #loading {
+      display: none;
+      font-size: 1.5rem;
+      color: #5c5be5;
+      margin-top: 2rem;
+      margin-bottom: 6rem;
+    }
+
+    .spinner-4 {
+      width: 50px;
+      --b: 8px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 1px;
+      background: conic-gradient(#0000 10%, #f03355) content-box;
+      -webkit-mask:
+        repeating-conic-gradient(#0000 0deg, #000 1deg 20deg, #0000 21deg 36deg),
+        radial-gradient(farthest-side, #0000 calc(100% - var(--b) - 1px), #000 calc(100% - var(--b)));
+      -webkit-mask-composite: destination-in;
+      mask-composite: intersect;
+      animation: s4 1s infinite steps(10);
+      margin: 20px 0;
+    }
+
+    @keyframes s4 {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+
+    #buttons {
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .continue {
+      width: 11rem;
+      height: 3rem;
+      font-family: "Rubik", sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+      text-transform: uppercase;
+      background-color: #007bff;
+      border: 0;
+      border-bottom: 0.2rem solid #6a83f0;
+      border-radius: 2rem;
+      cursor: pointer;
+    }
+
+    .continue:active {
+      border-bottom: 0;
+    }
+
+    @media (max-width: 740px) {
+      * {
+        font-size: 70%;
+      }
+    }
+
+    @media (max-width: 500px) {
+      * {
+        font-size: 55%;
+      }
+    }
+
+    @media (max-width: 390px) {
+      * {
+        font-size: 45%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div id="header">
+      <h1>Ranking</h1>
+      <button class="share">
+        <i class="ph ph-share-network"></i>
+      </button>
+    </div>
+    <div id="loading">
+      <div class="spinner-4"></div> <!-- Spinner hiển thị trong lúc loading -->
+    </div>
+    <div id="leaderboard">
+      <table id="leaderboardTable">
+        <tr>
+          <td class="number">#</td>
+          <td class="name">Name</td>
+          <td class="points">Points</td>
+        </tr>
+      </table>
+      <div id="buttons">
+        <button class="continue" onclick="window.history.back()">Exit</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    async function fetchData() {
+      const loadingIndicator = document.getElementById("loading");
+      const leaderboard = document.getElementById("leaderboard");
+      loadingIndicator.style.display = "block"; // Hiển thị loading
+
+      try {
+        let response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        let data = await response.json(); // Nhận dữ liệu mảng JSON
+
+        // Kiểm tra dữ liệu có đúng định dạng không
+        if (!Array.isArray(data)) {
+          throw new Error("Dữ liệu trả về không phải là mảng.");
+        }
+
+        // Sắp xếp theo điểm số
+        data.sort((a,b) => b.score - a.score);
+
+        const leaderboardTable = document.getElementById('leaderboardTable');
+        leaderboardTable.innerHTML = `<tr>
+                    <td class="number">#</td>
+                    <td class="name">Name</td>
+                    <td class="points">Points</td>
+                </tr>`; // Reset bảng
+
+        // Thêm dữ liệu vào bảng
+        data.forEach((player,index) => {
+          const row = document.createElement('tr');
+          if (index === 0) {
+            row.classList.add('top1'); // Thêm lớp cho hàng đầu
+          }
+          row.innerHTML = `
+                        <td class="number">${index + 1}</td>
+                        <td class="name">${player.name}</td>
+                        <td class="points">${player.score}${index === 0 ? '<img class="gold-medal" src="https://github.com/malunaridev/Challenges-iCodeThis/blob/master/4-leaderboard/assets/gold-medal.png?raw=true" alt="gold medal"/>' : ''}</td>
+                    `;
+          leaderboardTable.appendChild(row);
+        });
+
+        leaderboard.style.display = "block"; // Hiển thị bảng sau khi tải xong
+      } catch (error) {
+        console.error("Lỗi khi tải dữ liệu:",error);
+      } finally {
+        loadingIndicator.style.display = "none"; // Ẩn loading
+      }
+    }
+
+    // Gọi hàm khi trang tải
+    fetchData();
+  </script>
+</body>
+
+</html>
