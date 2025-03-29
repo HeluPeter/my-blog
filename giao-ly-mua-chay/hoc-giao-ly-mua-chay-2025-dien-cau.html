@@ -14,11 +14,11 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
 		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" type="text/css" href="dien-cau.css">
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+	<link rel="stylesheet" type="text/css" href="../css/dien-cau.css">
 
 	<title>Giáo Lý Mùa Chay - Năm Thánh 2025</title>
-	<link rel="icon" href="img/nam-thanh-2025-logo.png" type="image/png">
+	<link rel="icon" href="../img/nam-thanh-2025-logo.png" type="image/png">
 </head>
 
 <body>
@@ -29,6 +29,18 @@
 				<p><strong>Name:</strong> Nguyen Van Ninh</p>
 				<p><strong>Contact:</strong> oppa@example.com</p>
 				<p><strong>Score:</strong> <span class="score">9999</span></p>
+			</div>
+			<div class="sidebar">
+				<button onclick="location.href='../giao-ly-mua-chay/hoc-giao-ly-mua-chay-2025-dien-tu-level-1.html'">Điền từ
+					level 1</button>
+				<button onclick="location.href='../giao-ly-mua-chay/hoc-giao-ly-mua-chay-2025-dien-tu-level-2.html'">Điền từ
+					level 2</button>
+				<button onclick="location.href='../giao-ly-mua-chay/hoc-giao-ly-mua-chay-2025-dien-tu.html'">Điền từ level
+					3</button>
+			</div>
+			<div class="countdown-container">
+				<p style="align-items: center; text-align: center;">Còn mấy ngày nữa thi nhỉ?</p>
+				<p id="countdown" class="countdown"></p>
 			</div>
 		</div>
 		<div class="container">
@@ -53,8 +65,8 @@
 			<div id="buttons">
 				<button id="checkButton">Kiểm Tra</button>
 				<button id="tipsButton" style="background-color: #f7c638;">Tips</button>
-				<button id="prevButton" style="display: none; background-color: #6bb151;">Previous</button>
-				<button id="nextButton" style="display: none; background-color: #6bb151;">Next</button>
+				<button id="prevButton" style="display: none; background-color: #4CAF50;">Previous</button>
+				<button id="nextButton" style="display: none; background-color: #4CAF50;">Next</button>
 				<button id="showAnswerButton" style="display: none; background-color: #de4444;">Xem Đáp Án</button>
 			</div>
 			<div id="result"></div>
@@ -62,8 +74,8 @@
 		</div>
 	</div>
 
-	<audio id="correctSound" src="correct_sound.m4a"></audio>
-	<audio id="incorrectSound" src="incorrect_sound.m4a"></audio>
+	<audio id="correctSound" src="../correct_sound.m4a"></audio>
+	<audio id="incorrectSound" src="../incorrect_sound.m4a"></audio>
 
 	<script>
 		const questions = [
@@ -555,6 +567,7 @@
 		// Load the first question on page load
 		loadQuestion(currentQuestionIndex);
 	</script>
+	<script src="../js/count-down-timer.js"></script>
 
 </body>
 

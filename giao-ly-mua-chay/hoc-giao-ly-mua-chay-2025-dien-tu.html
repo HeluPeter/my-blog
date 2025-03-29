@@ -14,11 +14,11 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
 		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" type="text/css" href="dien-tu.css">
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+	<link rel="stylesheet" type="text/css" href="../css/dien-tu.css">
 
 	<title>Giáo Lý Mùa Chay - Năm Thánh 2025</title>
-	<link rel="icon" href="img/nam-thanh-2025-logo.png" type="image/png">
+	<link rel="icon" href="../img/nam-thanh-2025-logo.png" type="image/png">
 </head>
 
 <body>
@@ -217,7 +217,7 @@
 			},
 			{
 				question: "39. H. Chúa Giê-su đã lập Bí Tích Thống Hối khi nào?",
-				correctAnswers: "Chúa,Giê-su,đã,lập,Bí,Tích,Thống,Hối,khi,Ngài,hiện,ra,với,các,Tông,đồ,vào,chiều,ngày,Phục,Sinh,và,nói,rằng,Anh,em,hãy,nhận,lấy,Thánh,Thần,anh,em,tha,tội,cho,ai,thì,tội,người,ấy,được,tha,anh,em,cầm,giữ,ai,thì,tội,người,ấy,bị,cầm,giữ"
+				correctAnswers: "Chúa,Giê-su,đã,lập,Bí,Tích,Thống,Hối,khi,Ngài,hiện,ra,với,các,Tông,đồ,vào,chiều,ngày,Phục,Sinh,và,nói,rằng,'Anh,em,hãy,nhận,lấy,Thánh,Thần,anh,em,tha,tội,cho,ai,thì,tội,người,ấy,được,tha,anh,em,cầm,giữ,ai,thì,tội,người,ấy,bị,cầm,giữ"
 			},
 			{
 				question: "40. H. Bí Tích Thống Hối có những yếu tố chính yếu nào?",
@@ -327,7 +327,9 @@
 				question: "3-4. H. Hành hương Năm Thánh mang những ý nghĩa gì?",
 				correctAnswers: "Hành,hương,Năm,Thánh,có,những,ý,nghĩa,này,Một,là,lên,đường,hành,hương,đến,một,nơi,thánh,và,bước,qua,Cửa,Thánh,Hai,là,sống,kinh,nghiệm,hoán,cải,biến,đổi,chính,bản,thân,để,phù,hợp,với,sự,thánh,thiện,của,Thiên,Chúa,Ba,là,cuộc,hành,trình,ra,khỏi,chính,mình,bước,theo,Đức,Kitô,như,người,môn,đệ,để,từng,bước,nên,đồng,hình,đồng,dạng,với,Người"
 			}
+
 		];
+
 
 		let currentQuestionIndex = 0;
 		const questionElement = document.getElementById('question');
@@ -344,27 +346,21 @@
 			questionElement.textContent = questions[currentQuestionIndex].question;
 			quizContainer.innerHTML = ''; // Xóa ô nhập cũ
 
+			// Thêm ô "Thưa." vào quizContainer
+			const thuaInput = document.createElement('input');
+			thuaInput.type = 'text';
+			thuaInput.value = 'Thưa.';
+			thuaInput.className = 'input-box correct';
+			thuaInput.disabled = true;
+			quizContainer.appendChild(thuaInput);
+
+
 			correctAnswers = questions[currentQuestionIndex].correctAnswers.split(','); // Cập nhật lại correctAnswers
-			const numberOfFilledAnswers = Math.ceil(correctAnswers.length * 0.2); // 50%
-
-			// Điền sẵn các từ
-			const filledAnswers = new Set();
-			while (filledAnswers.size < numberOfFilledAnswers) {
-				const index = Math.floor(Math.random() * correctAnswers.length);
-				filledAnswers.add(index);
-			}
-
 			correctAnswers.forEach((answer,index) => {
 				const inputBox = document.createElement('input');
 				inputBox.type = 'text';
 				inputBox.className = 'input-box';
 				inputBox.dataset.index = index;
-
-				if (filledAnswers.has(index)) {
-					inputBox.value = answer; // Điền sẵn
-					inputBox.className = 'input-box correct';
-					inputBox.disabled = true; // Đặt ô này là disabled
-				}
 
 				inputBox.addEventListener('keydown',(event) => {
 					if (event.key === ' ') {
@@ -375,7 +371,6 @@
 
 				quizContainer.appendChild(inputBox);
 			});
-
 			errorMessage.textContent = ''; // Xóa thông báo lỗi
 			updateNavigationButtons();
 		}
@@ -384,26 +379,15 @@
 			const currentValue = inputBox.value.trim().toLowerCase();
 			if (currentValue === answer.toLowerCase()) {
 				inputBox.classList.add('correct');
-				const nextInput = getNextInput(index);
+				const nextInput = quizContainer.querySelector(`input[data-index="${index + 1}"]`);
 				if (nextInput) {
 					nextInput.focus(); // Chuyển đến ô tiếp theo
 					errorMessage.textContent = ''; // Xóa thông báo lỗi
 				}
 			} else {
 				inputBox.classList.remove('correct');
-				errorMessage.textContent = `Sai rồi bạn êiii! Gợi ý cho bạn bè "${answer.substring(0,2)}".`;
+				errorMessage.textContent = `Sai rồi bạn êiii! Gợi ý cho bạn nè "${answer.substring(0,2)}...".`;
 			}
-		}
-
-		function getNextInput(currentIndex) {
-			// Tìm ô nhập tiếp theo không bị disabled
-			for (let i = currentIndex + 1; i < quizContainer.children.length; i++) {
-				const inputBox = quizContainer.children[i];
-				if (!inputBox.disabled) {
-					return inputBox; // Trả về ô nhập tiếp theo không bị disabled
-				}
-			}
-			return null; // Không tìm thấy ô nhập tiếp theo
 		}
 
 		function updateNavigationButtons() {
@@ -426,8 +410,8 @@
 		});
 
 		searchButton.addEventListener('click',() => {
-			const searchTerm = searchInput.value.trim();
-			const foundIndex = questions.findIndex(q => q.question.startsWith(searchTerm));
+			const searchTerm = searchInput.value.toLowerCase();
+			const foundIndex = questions.findIndex(q => q.question.toLowerCase().includes(searchTerm));
 			if (foundIndex !== -1) {
 				currentQuestionIndex = foundIndex;
 				loadQuestion();

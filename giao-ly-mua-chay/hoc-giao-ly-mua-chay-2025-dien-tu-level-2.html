@@ -14,11 +14,11 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
 		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" type="text/css" href="dien-tu.css">
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+	<link rel="stylesheet" type="text/css" href="../css/dien-tu.css">
 
 	<title>Giáo Lý Mùa Chay - Năm Thánh 2025</title>
-	<link rel="icon" href="img/nam-thanh-2025-logo.png" type="image/png">
+	<link rel="icon" href="../img/nam-thanh-2025-logo.png" type="image/png">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 				<p><strong>Contact:</strong> oppa@example.com</p>
 				<p><strong>Score:</strong> <span class="score">9999</span></p>
 			</div>
-		</div>9
+		</div>
 		<div class="container">
 			<h1 class="title">
 				<a href="hoc-giao-ly-mua-chay-2025.html" style="text-decoration: none; color: inherit;">
@@ -61,7 +61,6 @@
 			</div>
 		</div>
 	</div>
-
 	<script>
 		const questions = [
 			{
@@ -218,7 +217,7 @@
 			},
 			{
 				question: "39. H. Chúa Giê-su đã lập Bí Tích Thống Hối khi nào?",
-				correctAnswers: "Chúa,Giê-su,đã,lập,Bí,Tích,Thống,Hối,khi,Ngài,hiện,ra,với,các,Tông,đồ,vào,chiều,ngày,Phục,Sinh,và,nói,rằng,'Anh,em,hãy,nhận,lấy,Thánh,Thần,anh,em,tha,tội,cho,ai,thì,tội,người,ấy,được,tha,anh,em,cầm,giữ,ai,thì,tội,người,ấy,bị,cầm,giữ"
+				correctAnswers: "Chúa,Giê-su,đã,lập,Bí,Tích,Thống,Hối,khi,Ngài,hiện,ra,với,các,Tông,đồ,vào,chiều,ngày,Phục,Sinh,và,nói,rằng,Anh,em,hãy,nhận,lấy,Thánh,Thần,anh,em,tha,tội,cho,ai,thì,tội,người,ấy,được,tha,anh,em,cầm,giữ,ai,thì,tội,người,ấy,bị,cầm,giữ"
 			},
 			{
 				question: "40. H. Bí Tích Thống Hối có những yếu tố chính yếu nào?",
@@ -330,7 +329,6 @@
 			}
 		];
 
-
 		let currentQuestionIndex = 0;
 		const questionElement = document.getElementById('question');
 		const quizContainer = document.getElementById('quiz-container');
@@ -347,7 +345,7 @@
 			quizContainer.innerHTML = ''; // Xóa ô nhập cũ
 
 			correctAnswers = questions[currentQuestionIndex].correctAnswers.split(','); // Cập nhật lại correctAnswers
-			const numberOfFilledAnswers = Math.ceil(correctAnswers.length * 0.5); // 50%
+			const numberOfFilledAnswers = Math.ceil(correctAnswers.length * 0.2); // 50%
 
 			// Điền sẵn các từ
 			const filledAnswers = new Set();
