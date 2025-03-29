@@ -150,24 +150,6 @@ button {
   font-weight: bold;
 }
 
-.sidebar button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 10px 15px;
-  margin: 10px 0;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  width: 100%;
-}
-
-.sidebar button:hover {
-  background-color: #2e7d32;
-}
-
 @media (max-width: 600px) {
   .input-box {
     max-width: 100%;
