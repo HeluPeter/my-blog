@@ -163,6 +163,21 @@ button {
     width: 100%;
     margin-bottom: 10px;
   }
+  #questionNumberInput {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 10px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .controls button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
 @keyframes bounce {
