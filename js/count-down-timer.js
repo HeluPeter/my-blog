@@ -1,4 +1,4 @@
-const endDate = new Date("2025-05-10T00:00:00"); // Ngày hết hạn
+const endDate = new Date("2025-05-25T00:00:00"); // Ngày hết hạn
 const countdownElement = document.getElementById("countdown");
 
 function startCountdown() {
