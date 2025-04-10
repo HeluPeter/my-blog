@@ -753,7 +753,7 @@ const questions = [
       "C. Phải giữ chay theo quy định của Hội Thánh",
       "D. Chỉ cần có lòng yêu mến Chúa là đủ"
     ],
-    "answer": "C",
+    "correctAnswer": "C",
     "explanation": "36. H. Phải có điều kiện nào để được rước lễ? - T. Phải có những điều kiện này: hoàn toàn thuộc về Hội Thánh Công Giáo; ý thức mình không có tội trọng; phải giữ chay theo quy định của Hội Thánh; có thái độ tôn kính Đức Kitô."
   },
   {
@@ -764,7 +764,7 @@ const questions = [
       "C. Khi có dịp lễ trọng",
       "D. Một lần trong tháng"
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "35. H. Hội Thánh dạy thế nào về việc rước lễ? - T. Hội Thánh khuyên các tín hữu rước lễ mỗi khi tham dự Thánh lễ, và buộc rước lễ một năm ít là một lần trong mùa Phục Sinh."
   },
   {
@@ -775,7 +775,7 @@ const questions = [
       "C. Bí Tích Thánh Tẩy",
       "D. Bí Tích Hôn Phối"
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "40. H. Bí Tích Thống Hối có những yếu tố chính yếu nào? - T. Một là hành vi của người sám hối; hai là lời xá giải của linh mục."
   },
   {
@@ -786,7 +786,7 @@ const questions = [
       "C. Đã lập gia đình",
       "D. Giữ chay theo quy định của Hội Thánh"
     ],
-    "answer": "C",
+    "correctAnswer": "C",
     "explanation": "36. H. Phải có điều kiện nào để được rước lễ? - T. Những điều kiện là: hoàn toàn thuộc về Hội Thánh Công Giáo; ý thức không có tội trọng; giữ chay theo quy định; có thái độ tôn kính Đức Kitô."
   },
   {
@@ -797,7 +797,7 @@ const questions = [
       "C. Tìm hiểu các tôn giáo khác",
       "D. Giới thiệu Chúa cho mọi người"
     ],
-    "answer": "C",
+    "correctAnswer": "C",
     "explanation": "30. H. Người lãnh Bí Tích Thêm Sức có những bổn phận nào? - T. Thi hành Lời Chúa, góp phần xây dựng xã hội theo tinh thần Tin Mừng, và giới thiệu Chúa cho mọi người."
   },
   {
@@ -808,7 +808,7 @@ const questions = [
       "C. Những hình phạt vĩnh viễn chưa gây ra",
       "D. Những tội tổ tông"
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "38. H. Bí Tích Thống Hối là gì? - T. Là bí tích Chúa Giê su đã lập, để tha các tội riêng chúng ta đã phạm từ khi lãnh Bí Tích Rửa Tội về sau."
   },
   {
@@ -819,7 +819,7 @@ const questions = [
       "C. Bí Tích Thánh Thể lần đầu",
       "D. Bí Tích Hôn Phối hoặc Truyền Chức"
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "38. H. Bí Tích Thống Hối là gì? – T. Là bí tích Chúa Giê-su đã lập để tha các tội riêng chúng ta đã phạm từ khi lãnh Bí Tích Rửa Tội về sau."
   },
   {
@@ -830,7 +830,7 @@ const questions = [
       "C. Sự cảm xúc nội tâm",
       "D. Sự hiện diện trước bàn thờ"
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "41. H. Người sám hối cần phải làm gì? – T. Phải xét mình, ăn năn tội, dốc lòng chừa và xưng ra các tội, rồi làm việc đền tội."
   },
   {
@@ -841,7 +841,7 @@ const questions = [
       "C. Một năm một lần",
       "D. Sau khi lãnh nhận Bí Tích Thêm Sức"
     ],
-    "answer": "C",
+    "correctAnswer": "C",
     "explanation": "42. H. Khi nào các tín hữu buộc phải xưng các tội trọng? – T. Khi đến tuổi khôn, mọi tín hữu buộc phải xưng các tội trọng của mình ít nhất một năm một lần và trong mọi trường hợp, phải xưng các tội trọng trước khi rước lễ."
   },
   {
@@ -852,7 +852,7 @@ const questions = [
       "C. Giao hòa chúng ta",
       "D. Cảm nhận sự bình an trong tâm hồn"
     ],
-    "answer": "C",
+    "correctAnswer": "C",
     "explanation": "43. H. Bí Tích Thống Hối có những hiệu quả nào? – T. Một là tha tội để giao hòa chúng ta với Thiên Chúa và Hội Thánh..."
   },
   {
@@ -863,7 +863,7 @@ const questions = [
       "C. Sau khi đã được lãnh nhận Bí Tích Rửa Tội",
       "D. Khi người sám hối sống đời mới"
     ],
-    "answer": "B",
+    "correctAnswer": "B",
     "explanation": "44. H. Ân xá là gì? – T. Ân xá là việc tha thứ những hình phạt tạm đáng chịu vì những tội chúng ta đã phạm, dù những tội này đã được tha thứ."
   }
 
