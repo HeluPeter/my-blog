@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easter Eggs 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #4ECDC4;
+            --accent-color: #FFE66D;
+            --dark-color: #292F36;
+            --light-color: #F7FFF7;
+            --gift-color: #FF9FF3;
+            --download-color: #48dbfb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            padding: 10px;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .inventory-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .egg-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+        }
+
+        .egg-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .egg-image-container {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .egg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-right: 3px solid var(--accent-color);
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .egg-image:hover {
+            transform: scale(1.05);
+        }
+
+        .image-actions {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .image-action-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--dark-color);
+        }
+
+        .image-action-btn:hover {
+            background-color: white;
+            transform: scale(1.1);
+        }
+
+        .egg-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .egg-name {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+
+        .egg-price {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .gift-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: var(--gift-color);
+            transition: color 0.3s ease;
+        }
+
+        .gift-section:hover {
+            color: #ff6bcb;
+        }
+
+        .gift-icon {
+            margin-right: 5px;
+            font-size: 1rem;
+        }
+
+        .gift-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .egg-stock {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stock-label {
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        .stock-quantity {
+            font-size: 0.9rem;
+            padding: 3px 10px;
+            background-color: var(--light-color);
+            border-radius: 20px;
+            color: var(--dark-color);
+        }
+
+        .low-stock {
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+
+        .out-of-stock {
+            color: #FF6B6B;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .egg-actions {
+            margin-top: auto;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+
+        .btn-buy {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-buy:hover {
+            background-color: #3dbeb6;
+        }
+
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Modal zoom ảnh */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #bbb;
+        }
+
+        /* Popup thông báo */
+        .alert-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .alert-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 25px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-message {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            line-height: 1.5;
+        }
+
+        .alert-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .alert-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .alert-btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .alert-btn-primary:hover {
+            background-color: #ff5252;
+        }
+
+        .alert-btn-secondary {
+            background-color: #ddd;
+            color: var(--dark-color);
+        }
+
+        .alert-btn-secondary:hover {
+            background-color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .inventory-list {
+                grid-template-columns: 1fr;
+            }
+
+            .egg-item {
+                flex-direction: column;
+            }
+
+            .egg-image-container {
+                width: 100%;
+            }
+
+            .egg-image {
+                border-right: none;
+                border-bottom: 3px solid var(--accent-color);
+            }
+
+            .alert-content {
+                width: 90%;
+                margin: 30% auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .inventory-list {
+                grid-template-columns: repeat(2, 1fr);
+                /* Hiển thị 2 mẫu trứng mỗi hàng */
+            }
+
+            .egg-item {
+                flex-direction: column;
+            }
+
+            .egg-image {
+                border-right: none;
+                border-bottom: 3px solid var(--accent-color);
+            }
+
+            .alert-content {
+                width: 90%;
+                margin: 30% auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Easter Eggs 2025</h1>
+
+        <div class="inventory-list" id="eggInventory">
+            <!-- Danh sách trứng sẽ được thêm bằng JavaScript -->
+        </div>
+    </div>
+
+    <!-- Modal zoom ảnh -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="zoomedImage">
+    </div>
+
+    <!-- Modal quà tặng -->
+    <div id="giftModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="giftImage">
+    </div>
+
+    <!-- Popup thông báo khi mua hàng -->
+    <div id="buyAlert" class="alert-modal">
+        <div class="alert-content">
+            <div class="alert-message">
+                Hãy gửi tin nhắn cho tớ để chốt nha!<br>
+                <strong>Nhanh không là hết mẫu đẹp đó!</strong>
+            </div>
+            <div class="alert-actions">
+                <button class="alert-btn alert-btn-primary" onclick="closeBuyAlert()">Đã hiểu</button>
+                <a href="https://www.facebook.com/tnttphungkhoang" target="_blank"
+                    class="alert-btn alert-btn-secondary">Nhắn tin ngay</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dữ liệu mẫu các loại trứng
+        const eggInventory = [
+            {
+                id: 1,
+                name: "Trứng Hoa Văn Truyền Thống",
+                image: "https://i.imgur.com/bTU0lY3.jpeg",
+                price: "50,000 VND",
+                stock: 15,
+                gift: {
+                    text: "Quà tặng kèm: Hộp đựng sang trọng",
+                    image: "https://i.imgur.com/5X5v0Qj.jpg"
+                }
+            },
+            {
+                id: 2,
+                name: "Trứng Phục Sinh Hiện Đại",
+                image: "https://i.imgur.com/bTU0lY3.jpeg",
+                price: "65,000 VND",
+                stock: 1,
+                gift: {
+                    text: "Quà tặng kèm: Thiệp chúc mừng",
+                    image: "https://i.imgur.com/J6l19aF.jpg"
+                }
+            },
+            {
+                id: 3,
+                name: "Trứng Vẽ Tay Nghệ Thuật",
+                image: "https://i.imgur.com/bTU0lY3.jpeg",
+                price: "120,000 VND",
+                stock: 1,
+                gift: {
+                    text: "Quà tặng kèm: Bộ 3 nến thơm",
+                    image: "https://i.imgur.com/qz5vL9d.jpg"
+                }
+            }
+        ];
+
+        // Hàm hiển thị danh sách trứng
+        function displayEggInventory() {
+            const inventoryContainer = document.getElementById('eggInventory');
+            inventoryContainer.innerHTML = '';
+
+            // Sắp xếp theo số lượng hàng tồn từ cao xuống thấp
+            const sortedInventory = eggInventory.sort((a,b) => b.stock - a.stock);
+
+            sortedInventory.forEach(egg => {
+                const eggElement = document.createElement('div');
+                eggElement.className = 'egg-item';
+
+                // Kiểm tra số lượng tồn kho để thêm lớp CSS phù hợp
+                let stockClass = '';
+                let stockText = `${egg.stock} quả`;
+
+                if (egg.stock <= 0) {
+                    stockClass = 'out-of-stock';
+                    stockText = 'HẾT HÀNG';
+                } else if (egg.stock <= 1) {
+                    stockClass = 'low-stock';
+                    stockText = `Chỉ còn ${egg.stock} quả`;
+                }
+
+                eggElement.innerHTML = `
+                    ${egg.stock <= 0 ? '<div class="ribbon">Hết hàng</div>' : ''}
+                    <div class="egg-image-container">
+                        <img src="${egg.image}" alt="${egg.name}" class="egg-image">
+                        <div class="image-actions">
+                            <div class="image-action-btn zoom-btn" onclick="zoomImage('${egg.image}')">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="egg-info">
+                        <h3 class="egg-name">${egg.name}</h3>
+                        <div class="egg-price">${egg.price}</div>
+                        <div class="gift-section" onclick="showGift('${egg.gift.image}')">
+                            <i class="fas fa-gift gift-icon"></i>
+                            <span class="gift-text">${egg.gift.text}</span>
+                        </div>
+                        <div class="egg-stock">
+                            <span class="stock-quantity ${stockClass}">${stockText}</span>
+                        </div>
+                        <div class="egg-actions">
+                            <button class="btn btn-buy" onclick="showBuyAlert()">Mua</button>
+                        </div>
+                    </div>
+                `;
+
+                inventoryContainer.appendChild(eggElement);
+            });
+        }
+
+        // Hàm zoom ảnh sản phẩm
+        function zoomImage(imgSrc) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("zoomedImage");
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+        }
+
+        // Hàm hiển thị ảnh quà tặng
+        function showGift(imgSrc) {
+            const modal = document.getElementById("giftModal");
+            const modalImg = document.getElementById("giftImage");
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+        }
+
+        // Hàm hiển thị popup thông báo khi mua hàng
+        function showBuyAlert() {
+            document.getElementById("buyAlert").style.display = "block";
+        }
+
+        // Hàm đóng popup thông báo
+        function closeBuyAlert() {
+            document.getElementById("buyAlert").style.display = "none";
+        }
+
+        // Đóng modal khi click vào nút đóng
+        document.querySelectorAll(".close").forEach(closeBtn => {
+            closeBtn.onclick = function () {
+                document.getElementById("imageModal").style.display = "none";
+                document.getElementById("giftModal").style.display = "none";
+            }
+        });
+
+        // Đóng modal khi click bên ngoài ảnh
+        window.onclick = function (event) {
+            const imageModal = document.getElementById("imageModal");
+            const giftModal = document.getElementById("giftModal");
+            const buyAlert = document.getElementById("buyAlert");
+
+            if (event.target == imageModal) {
+                imageModal.style.display = "none";
+            }
+            if (event.target == giftModal) {
+                giftModal.style.display = "none";
+            }
+            if (event.target == buyAlert) {
+                buyAlert.style.display = "none";
+            }
+        }
+
+        // Khởi tạo hiển thị khi trang được tải
+        window.onload = displayEggInventory;
+    </script>
+</body>
+
+</html>
