@@ -36,16 +36,17 @@
         }
 
         h1 {
+            font-size: 3em;
+            color: #df959c;
             text-align: center;
-            margin-bottom: 30px;
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            font-weight: bold;
-            padding: 10px;
-            border: 2px solid var(--primary-color);
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        h1:hover {
+            transform: scale(1.1);
+            color: #c77a8b;
         }
 
         .inventory-list {
@@ -208,12 +209,12 @@
         }
 
         .btn-buy {
-            background-color: var(--secondary-color);
+            background-color: #df959c;
             color: white;
         }
 
         .btn-buy:hover {
-            background-color: #3dbeb6;
+            background-color: #df959c;
         }
 
         .ribbon {
@@ -226,6 +227,7 @@
             transform: rotate(45deg);
             font-weight: bold;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
 
         /* Modal zoom ảnh */
@@ -388,6 +390,12 @@
                 margin: 30% auto;
             }
         }
+
+        .btn-disabled {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -416,7 +424,7 @@
     <div id="buyAlert" class="alert-modal">
         <div class="alert-content">
             <div class="alert-message">
-                Hãy gửi tin nhắn cho tớ để chốt nha!<br>
+                Hãy nhấn giữ và lưu ảnh mẫu yêu thích lại nha!<br>Sau đó gửi tin nhắn cho tớ để chốt liền!<br>
                 <strong>Nhanh không là hết mẫu đẹp đó!</strong>
             </div>
             <div class="alert-actions">
@@ -430,40 +438,87 @@
     <script>
         // Dữ liệu mẫu các loại trứng
         const eggInventory = [
-            {
-                id: 1,
-                name: "Inside out test",
-                image: "https://i.imgur.com/bTU0lY3.jpeg",
-                price: "50,000 VND",
-                stock: 15,
-                gift: {
-                    text: "Quà tặng kèm khi mua từ 2 quả",
-                    image: "https://i.imgur.com/5X5v0Qj.jpg"
-                }
-            },
-            {
-                id: 2,
-                name: "Inside out test",
-                image: "https://i.imgur.com/bTU0lY3.jpeg",
-                price: "65,000 VND",
-                stock: 1,
-                gift: {
-                    text: "Quà tặng kèm khi mua từ 2 quả",
-                    image: "https://i.imgur.com/5X5v0Qj.jpg"
-                }
-            },
-            {
-                id: 3,
-                name: "Inside out test",
-                image: "https://i.imgur.com/bTU0lY3.jpeg",
-                price: "120,000 VND",
-                stock: 1,
-                gift: {
-                    text: "Quà tặng kèm khi mua từ 2 quả",
-                    image: "https://i.imgur.com/5X5v0Qj.jpg"
-                }
-            }
-        ];
+            { id: 1,name: "Mẫu 1",image: "https://i.ibb.co/2Y1t3nq7/peter-saint.jpg",price: "40,000 VND",stock: 0 },
+            { id: 2,name: "Mẫu 2",image: "https://i.ibb.co/h1xXDXqH/easter-eggs-1.jpg",price: "40,000 VND",stock: 1 },
+            { id: 3,name: "Mẫu 3",image: "https://i.ibb.co/cczrSKKR/easter-eggs-2.jpg",price: "40,000 VND",stock: 1 },
+            { id: 4,name: "Mẫu 4",image: "https://i.ibb.co/9kyGWqkY/easter-eggs-3.jpg",price: "40,000 VND",stock: 1 },
+            { id: 5,name: "Mẫu 5",image: "https://i.ibb.co/JZjGByc/easter-eggs-4.jpg",price: "40,000 VND",stock: 1 },
+            { id: 6,name: "Mẫu 6",image: "https://i.ibb.co/SwHw4kg5/easter-eggs-5.jpg",price: "40,000 VND",stock: 1 },
+            { id: 7,name: "Mẫu 7",image: "https://i.ibb.co/5WW0KVvF/easter-eggs-6.jpg",price: "40,000 VND",stock: 1 },
+            { id: 8,name: "Mẫu 8",image: "https://i.ibb.co/wNvmxyt6/easter-eggs-7.jpg",price: "40,000 VND",stock: 1 },
+            { id: 9,name: "Mẫu 9",image: "https://i.ibb.co/RGYF66wz/easter-eggs-8.jpg",price: "40,000 VND",stock: 1 },
+            { id: 10,name: "Mẫu 10",image: "https://i.ibb.co/zVBN00BD/easter-eggs-9.jpg",price: "40,000 VND",stock: 1 },
+            { id: 11,name: "Mẫu 11",image: "https://i.ibb.co/LX5LypTt/easter-eggs-10.jpg",price: "40,000 VND",stock: 1 },
+            { id: 12,name: "Mẫu 12",image: "https://i.ibb.co/dsW551B5/easter-eggs-11.jpg",price: "40,000 VND",stock: 1 },
+            { id: 13,name: "Mẫu 13",image: "https://i.ibb.co/4ZDJCTJq/easter-eggs-12.jpg",price: "40,000 VND",stock: 1 },
+            { id: 14,name: "Mẫu 14",image: "https://i.ibb.co/DD5X5ND0/easter-eggs-13.jpg",price: "40,000 VND",stock: 1 },
+            { id: 15,name: "Mẫu 15",image: "https://i.ibb.co/fzhctQyf/easter-eggs-14.jpg",price: "40,000 VND",stock: 1 },
+            { id: 16,name: "Mẫu 16",image: "https://i.ibb.co/C3SYydd2/easter-eggs-15.jpg",price: "40,000 VND",stock: 1 },
+            { id: 17,name: "Mẫu 17",image: "https://i.ibb.co/KzDJkvyy/easter-eggs-16.jpg",price: "40,000 VND",stock: 1 },
+            { id: 18,name: "Mẫu 18",image: "https://i.ibb.co/FkRnRyKd/easter-eggs-17.jpg",price: "40,000 VND",stock: 1 },
+            { id: 19,name: "Mẫu 19",image: "https://i.ibb.co/ksHGpkT6/easter-eggs-18.jpg",price: "40,000 VND",stock: 1 },
+            { id: 20,name: "Mẫu 20",image: "https://i.ibb.co/Xry0hnSj/easter-eggs-19.jpg",price: "40,000 VND",stock: 1 },
+            { id: 21,name: "Mẫu 21",image: "https://i.ibb.co/qh4st1L/easter-eggs-20.jpg",price: "40,000 VND",stock: 1 },
+            { id: 22,name: "Mẫu 22",image: "https://i.ibb.co/Y4Z6CSv4/easter-eggs-21.jpg",price: "40,000 VND",stock: 1 },
+            { id: 23,name: "Mẫu 23",image: "https://i.ibb.co/sJw2qN25/easter-eggs-22.jpg",price: "40,000 VND",stock: 1 },
+            { id: 24,name: "Mẫu 24",image: "https://i.ibb.co/BVVhWqyx/easter-eggs-23.jpg",price: "40,000 VND",stock: 1 },
+            { id: 25,name: "Mẫu 25",image: "https://i.ibb.co/DD1KB7z8/easter-eggs-24.jpg",price: "40,000 VND",stock: 1 },
+            { id: 26,name: "Mẫu 26",image: "https://i.ibb.co/TxF31Qpn/easter-eggs-25.jpg",price: "40,000 VND",stock: 1 },
+            { id: 27,name: "Mẫu 27",image: "https://i.ibb.co/V0TXrTWR/easter-eggs-26.jpg",price: "40,000 VND",stock: 1 },
+            { id: 28,name: "Mẫu 28",image: "https://i.ibb.co/Cs0Wwkq7/easter-eggs-27.jpg",price: "40,000 VND",stock: 1 },
+            { id: 29,name: "Mẫu 29",image: "https://i.ibb.co/sv2J0hvh/easter-eggs-28.jpg",price: "40,000 VND",stock: 1 },
+            { id: 30,name: "Mẫu 30",image: "https://i.ibb.co/84TKqV83/easter-eggs-29.jpg",price: "40,000 VND",stock: 1 },
+            { id: 31,name: "Mẫu 31",image: "https://i.ibb.co/KpnFXZZG/easter-eggs-30.jpg",price: "40,000 VND",stock: 1 },
+            { id: 32,name: "Mẫu 32",image: "https://i.ibb.co/tpZYpx7w/easter-eggs-31.jpg",price: "40,000 VND",stock: 1 },
+            { id: 33,name: "Mẫu 33",image: "https://i.ibb.co/bjNfB0RW/easter-eggs-32.jpg",price: "40,000 VND",stock: 1 },
+            { id: 34,name: "Mẫu 34",image: "https://i.ibb.co/jPvwPLbp/easter-eggs-33.jpg",price: "40,000 VND",stock: 1 },
+            { id: 35,name: "Mẫu 35",image: "https://i.ibb.co/nsHvrmrt/easter-eggs-34.jpg",price: "40,000 VND",stock: 1 },
+            { id: 36,name: "Mẫu 36",image: "https://i.ibb.co/CpWHQ7jf/easter-eggs-35.jpg",price: "40,000 VND",stock: 1 },
+            { id: 37,name: "Mẫu 37",image: "https://i.ibb.co/8nrr63jC/easter-eggs-36.jpg",price: "40,000 VND",stock: 1 },
+            { id: 38,name: "Mẫu 38",image: "https://i.ibb.co/Wvtm50rX/easter-eggs-37.jpg",price: "40,000 VND",stock: 1 },
+            { id: 39,name: "Mẫu 39",image: "https://i.ibb.co/1YZPG2C7/easter-eggs-38.jpg",price: "40,000 VND",stock: 1 },
+            { id: 40,name: "Mẫu 40",image: "https://i.ibb.co/ZpDsJQ8g/easter-eggs-39.jpg",price: "40,000 VND",stock: 1 },
+            { id: 41,name: "Mẫu 41",image: "https://i.ibb.co/GQ74spJy/easter-eggs-40.jpg",price: "40,000 VND",stock: 1 },
+            { id: 42,name: "Mẫu 42",image: "https://i.ibb.co/RT8qjGRT/easter-eggs-41.jpg",price: "40,000 VND",stock: 1 },
+            { id: 43,name: "Mẫu 43",image: "https://i.ibb.co/xSH4ZXp9/easter-eggs-42.jpg",price: "40,000 VND",stock: 1 },
+            { id: 44,name: "Mẫu 44",image: "https://i.ibb.co/C5jywzQc/easter-eggs-43.jpg",price: "40,000 VND",stock: 1 },
+            { id: 45,name: "Mẫu 45",image: "https://i.ibb.co/8L9ptWsC/easter-eggs-44.jpg",price: "40,000 VND",stock: 1 },
+            { id: 46,name: "Mẫu 46",image: "https://i.ibb.co/wFkMgLWb/easter-eggs-45.jpg",price: "40,000 VND",stock: 1 },
+            { id: 47,name: "Mẫu 47",image: "https://i.ibb.co/nshdgqx6/easter-eggs-46.jpg",price: "40,000 VND",stock: 1 },
+            { id: 48,name: "Mẫu 48",image: "https://i.ibb.co/yFQVssKv/easter-eggs-47.jpg",price: "40,000 VND",stock: 1 },
+            { id: 49,name: "Mẫu 49",image: "https://i.ibb.co/842CPbyq/easter-eggs-48.jpg",price: "40,000 VND",stock: 1 },
+            { id: 50,name: "Mẫu 50",image: "https://i.ibb.co/tpVFBfgn/easter-eggs-49.jpg",price: "40,000 VND",stock: 1 },
+            { id: 51,name: "Mẫu 51",image: "https://i.ibb.co/fYgDdhFr/easter-eggs-50.jpg",price: "40,000 VND",stock: 1 },
+            { id: 52,name: "Mẫu 52",image: "https://i.ibb.co/6R9CprHn/easter-eggs-51.jpg",price: "40,000 VND",stock: 1 },
+            { id: 53,name: "Mẫu 53",image: "https://i.ibb.co/0px2vRRp/easter-eggs-52.jpg",price: "40,000 VND",stock: 1 },
+            { id: 54,name: "Mẫu 54",image: "https://i.ibb.co/sJz8gKY9/easter-eggs-53.jpg",price: "40,000 VND",stock: 1 },
+            { id: 55,name: "Mẫu 55",image: "https://i.ibb.co/XkXQpzJW/easter-eggs-54.jpg",price: "40,000 VND",stock: 1 },
+            { id: 56,name: "Mẫu 56",image: "https://i.ibb.co/PvJxqtML/easter-eggs-55.jpg",price: "40,000 VND",stock: 1 },
+            { id: 57,name: "Mẫu 57",image: "https://i.ibb.co/LXxkdPFn/easter-eggs-56.jpg",price: "40,000 VND",stock: 1 },
+            { id: 58,name: "Mẫu 58",image: "https://i.ibb.co/Dg8h8r31/easter-eggs-57.jpg",price: "40,000 VND",stock: 1 },
+            { id: 59,name: "Mẫu 59",image: "https://i.ibb.co/TxqLH43S/easter-eggs-58.jpg",price: "40,000 VND",stock: 1 },
+            { id: 60,name: "Mẫu 60",image: "https://i.ibb.co/G4kDjyjn/easter-eggs-59.jpg",price: "40,000 VND",stock: 1 },
+            { id: 61,name: "Mẫu 61",image: "https://i.ibb.co/q3sjYT60/easter-eggs-60.jpg",price: "40,000 VND",stock: 1 },
+            { id: 62,name: "Mẫu 62",image: "https://i.ibb.co/gFHKjjTt/easter-eggs-61.jpg",price: "40,000 VND",stock: 1 },
+            { id: 63,name: "Mẫu 63",image: "https://i.ibb.co/4bDSZDT/easter-eggs-62.jpg",price: "40,000 VND",stock: 1 },
+            { id: 64,name: "Mẫu 64",image: "https://i.ibb.co/JRzQGdTP/easter-eggs-63.jpg",price: "40,000 VND",stock: 1 },
+            { id: 65,name: "Mẫu 65",image: "https://i.ibb.co/PZtLLNWZ/easter-eggs-64.jpg",price: "40,000 VND",stock: 1 },
+            { id: 66,name: "Mẫu 66",image: "https://i.ibb.co/HfvPkhqV/easter-eggs-65.jpg",price: "40,000 VND",stock: 1 },
+            { id: 67,name: "Mẫu 67",image: "https://i.ibb.co/4ZmWtqDt/easter-eggs-66.jpg",price: "40,000 VND",stock: 1 },
+            { id: 68,name: "Mẫu 68",image: "https://i.ibb.co/35WVjpZ8/easter-eggs-67.jpg",price: "40,000 VND",stock: 1 },
+            { id: 69,name: "Mẫu 69",image: "https://i.ibb.co/sJjPsjnJ/easter-eggs-68.jpg",price: "40,000 VND",stock: 1 },
+            { id: 70,name: "Mẫu 70",image: "https://i.ibb.co/SDt0C1G7/easter-eggs-69.jpg",price: "40,000 VND",stock: 1 },
+            { id: 71,name: "Mẫu 71",image: "https://i.ibb.co/LD4LsVTF/easter-eggs-70.jpg",price: "40,000 VND",stock: 1 },
+            { id: 72,name: "Mẫu 72",image: "https://i.ibb.co/YFqgmTJS/easter-eggs-71.jpg",price: "40,000 VND",stock: 1 },
+            { id: 73,name: "Mẫu 73",image: "https://i.ibb.co/nMqJkhQr/easter-eggs-72.jpg",price: "40,000 VND",stock: 1 },
+            { id: 74,name: "Mẫu 74",image: "https://i.ibb.co/SXF65vdG/easter-eggs-73.jpg",price: "40,000 VND",stock: 1 },
+            { id: 75,name: "Mẫu 75",image: "https://i.ibb.co/Vp2jKn60/easter-eggs-74.jpg",price: "40,000 VND",stock: 1 },
+            { id: 76,name: "Mẫu 76",image: "https://i.ibb.co/0d1XKTX/easter-eggs-75.jpg",price: "40,000 VND",stock: 1 },
+            { id: 77,name: "Mẫu 77",image: "https://i.ibb.co/Rp1nktBp/easter-eggs-76.jpg",price: "40,000 VND",stock: 1 },
+            { id: 78,name: "Mẫu 78",image: "https://i.ibb.co/p6DVzRD3/easter-eggs-77.jpg",price: "40,000 VND",stock: 1 },
+            { id: 79,name: "Mẫu 79",image: "https://i.ibb.co/r2SHQ0rP/easter-eggs-78.jpg",price: "40,000 VND",stock: 1 }
+        ]
+
 
         // Hàm hiển thị danh sách trứng
         function displayEggInventory() {
@@ -480,10 +535,12 @@
                 // Kiểm tra số lượng tồn kho để thêm lớp CSS phù hợp
                 let stockClass = '';
                 let stockText = `${egg.stock} quả`;
+                let buyButtonClass = '';
 
                 if (egg.stock <= 0) {
                     stockClass = 'out-of-stock';
                     stockText = 'HẾT HÀNG';
+                    buyButtonClass = 'btn-disabled';
                 } else if (egg.stock <= 1) {
                     stockClass = 'low-stock';
                     stockText = `Chỉ còn ${egg.stock} quả`;
@@ -502,15 +559,15 @@
                     <div class="egg-info">
                         <h3 class="egg-name">${egg.name}</h3>
                         <div class="egg-price">${egg.price}</div>
-                        <div class="gift-section" onclick="showGift('${egg.gift.image}')">
+                        <div class="gift-section" onclick="showGift('https://i.ibb.co/6cts93WW/9bf8a6df4e14fd4aa405.jpg')">
                             <i class="fas fa-gift gift-icon"></i>
-                            <span class="gift-text">${egg.gift.text}</span>
+                            <span class="gift-text">Quà tặng kèm khi mua từ 2 quả</span>
                         </div>
                         <div class="egg-stock">
                             <span class="stock-quantity ${stockClass}">${stockText}</span>
                         </div>
                         <div class="egg-actions">
-                            <button class="btn btn-buy" onclick="showBuyAlert()">Mua</button>
+                            <button class="btn btn-buy ${buyButtonClass}" onclick="${egg.stock > 0 ? 'showBuyAlert()' : ''}" ${egg.stock <= 0 ? 'disabled' : ''}>Mua trứng</button>
                         </div>
                     </div>
                 `;
